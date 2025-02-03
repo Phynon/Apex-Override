@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=3 uid="uid://c3dywxs16624x"]
+
+[ext_resource type="Shader" path="res://Shaders/cel_shading.gdshader" id="1_ci523"]
+[ext_resource type="Shader" path="res://Shaders/edge_detection.gdshader" id="1_ugx2f"]
+[ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://checker.jpg" id="2_o52xj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hp20k"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odkjl"]
+render_priority = 0
+shader = ExtResource("1_ugx2f")
+shader_parameter/lightIntensity = 1.25
+shader_parameter/lineAlpha = 0.7
+shader_parameter/useLighting = false
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.55
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfxb1"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_o52xj")
+uv1_scale = Vector3(9, 9, 9)
+texture_filter = 0
+
+[sub_resource type="TorusMesh" id="TorusMesh_ypu1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7w2ba"]
+render_priority = 0
+shader = ExtResource("1_ci523")
+shader_parameter/color = Color(0.54, 0.77, 1, 1)
+shader_parameter/roughness = 1.0
+shader_parameter/lightSteps = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqaes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi8eg"]
+diffuse_mode = 3
+albedo_color = Color(0.231, 0.7, 0.340433, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkr1p"]
+diffuse_mode = 3
+albedo_color = Color(0.231, 0.7, 0.340433, 1)
+roughness = 0.82
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
+ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
+
+[sub_resource type="Sky" id="Sky_uuj2g"]
+sky_material = SubResource("PhysicalSkyMaterial_xc73o")
+
+[sub_resource type="Environment" id="Environment_n4gow"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_uuj2g")
+
+[sub_resource type="Animation" id="Animation_rjqes"]
+resource_name = "rotating_objects"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("meshes/torus:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xr1em"]
+_data = {
+"rotating_objects": SubResource("Animation_rjqes")
+}
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0279779, 0, -0.00127125)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 7
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(164, 92)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.03694, 7.50437)
+projection = 1
+size = 6.0
+far = 200.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_hp20k")
+surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
+
+[node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(11.6393, 0, 11.6393, 0, 16.4604, 0, -11.6393, 0, 11.6393, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uqnki")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
+
+[node name="torus" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(-0.193856, 0.962419, 0.190179, 0, -0.193856, 0.981032, 0.981029, 0.190178, 0.0375802, 0, 3.34115, 0)
+mesh = SubResource("TorusMesh_ypu1u")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_7w2ba")
+
+[node name="cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 1.41186, 0, -0.998333, 0, 0.998333, 0, 0.819036, 0)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.58539, 0, 0.58539, 0, 0.827869, 0, -0.58539, 0, 0.58539, -2.00928, 1.06355, 2.62341)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_dkr1p")
+
+[node name="cube7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.672609, 0, 0.672609, 0, 0.951216, 0, -0.672609, 0, 0.672609, -4.4321, 1.42611, -0.0344589)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.672609, 0, 0.672609, 0, 0.951216, 0, -0.672609, 0, 0.672609, -3.47073, 2.96076, -1.08467)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 2.29213, 0, -0.998333, 0, 0.998333, 4.12221, 1.24502, -0.197803)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 3.01124, 0, -0.998333, 0, 0.998333, 3.12605, 1.58668, -1.19744)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 1.65436, 0, -0.998333, 0, 0.998333, 3.12022, 0.928415, 0.825538)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(1.43963, 0, 1.42278, 0, 2.49326, 0, -1.43963, 0, 1.42278, -3.45486, 1.23364, -1.18273)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="cube6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
+transform = Transform3D(4.28778, 0, 3.53859, 0, 0.453113, 0, -4.28778, 0, 3.53859, 2.18025, 0.217412, -0.176708)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.130526, 0.749387, 0.649139, -5.72393e-08, -0.654741, 0.755853, 0.991445, 0.0986586, 0.0854609, 0, 4.76559, 0)
+shadow_enabled = true
+shadow_blur = 0.1
+directional_shadow_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_n4gow")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
+libraries = {
+"": SubResource("AnimationLibrary_xr1em")
+}
+autoplay = "rotating_objects"
