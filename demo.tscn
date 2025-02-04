@@ -9,11 +9,11 @@ flip_faces = true
 size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odkjl"]
-render_priority = 0
+render_priority = 2
 shader = ExtResource("1_ugx2f")
 shader_parameter/lightIntensity = 1.25
 shader_parameter/lineAlpha = 0.7
-shader_parameter/useLighting = false
+shader_parameter/useLighting = true
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
 
@@ -31,7 +31,7 @@ texture_filter = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7w2ba"]
 render_priority = 0
 shader = ExtResource("1_ci523")
-shader_parameter/color = Color(0.54, 0.77, 1, 1)
+shader_parameter/color = Color(1, 0.54, 0.547667, 1)
 shader_parameter/roughness = 1.0
 shader_parameter/lightSteps = 2.0
 
@@ -44,18 +44,20 @@ albedo_color = Color(0.231, 0.7, 0.340433, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkr1p"]
 diffuse_mode = 3
 albedo_color = Color(0.231, 0.7, 0.340433, 1)
-roughness = 0.82
+roughness = 0.0
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
 ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
 
-[sub_resource type="Sky" id="Sky_uuj2g"]
+[sub_resource type="Sky" id="Sky_kypv1"]
 sky_material = SubResource("PhysicalSkyMaterial_xc73o")
 
 [sub_resource type="Environment" id="Environment_n4gow"]
 background_mode = 2
 background_energy_multiplier = 2.0
-sky = SubResource("Sky_uuj2g")
+sky = SubResource("Sky_kypv1")
+ssil_intensity = 4.0
+sdfgi_read_sky_light = false
 
 [sub_resource type="Animation" id="Animation_rjqes"]
 resource_name = "rotating_objects"
@@ -90,11 +92,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 7
+stretch_shrink = 6
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(164, 92)
+size = Vector2i(192, 108)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
@@ -104,6 +106,7 @@ size = 6.0
 far = 200.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_hp20k")
 surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
@@ -117,7 +120,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
 
 [node name="torus" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(-0.193856, 0.962419, 0.190179, 0, -0.193856, 0.981032, 0.981029, 0.190178, 0.0375802, 0, 3.34115, 0)
+transform = Transform3D(-0.999122, 0.00175378, 0.0418416, 0, -0.999122, 0.0418783, 0.0418782, 0.0418414, 0.998248, 0, 3.34115, 0)
 mesh = SubResource("TorusMesh_ypu1u")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_7w2ba")

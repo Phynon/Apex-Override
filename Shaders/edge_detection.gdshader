@@ -39,7 +39,7 @@ float NormalEdgeIndicator(vec3 normalEdgeBias, vec3 normal, vec3 neighborNormal,
 }
 
 void vertex(){
-  POSITION = vec4(VERTEX, 1.0);
+  POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
 void fragment() {
@@ -55,7 +55,7 @@ void fragment() {
 
 	// Using alpha channel (screen roughness) to mask objects to not receive outlines
 	float outlineMask = texture(NORMAL_TEXTURE, SCREEN_UV).a;
-	outlineMask = floor(outlineMask);
+	outlineMask = ceil(outlineMask);
 	
 	// Roberts Cross edge detection
 	// Edge detection with Depth
@@ -69,7 +69,7 @@ void fragment() {
 		negDepthDiff += depth - dOff;
 	}
 	negDepthDiff = clamp(negDepthDiff, 0.0, 1.0);
-	negDepthDiff = clamp(smoothstep(0.9, 1.0, negDepthDiff) * 10.0 , 0.0, 1.0);
+	negDepthDiff = clamp(smoothstep(0.9, 0.9, negDepthDiff) * 10.0 , 0.0, 1.0);
 	depthDiff = smoothstep(0.2, 0.3, depthDiff);
 
 	// Edge detection with Normals
