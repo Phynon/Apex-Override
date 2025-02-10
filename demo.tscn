@@ -13,7 +13,7 @@ render_priority = 2
 shader = ExtResource("1_ugx2f")
 shader_parameter/lightIntensity = 1.25
 shader_parameter/lineAlpha = 0.7
-shader_parameter/useLighting = true
+shader_parameter/useLighting = false
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
 
@@ -162,7 +162,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
 
 [node name="cube4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.998333, 0, 0.998333, 0, 1.65436, 0, -0.998333, 0, 0.998333, 3.12022, 0.928415, 0.825538)
+transform = Transform3D(0.998333, 0, 0.998333, 0, 1.65436, 0, -0.998333, 0, 0.998333, 3.13411, 0.928415, 0.811643)
 mesh = SubResource("BoxMesh_dqaes")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")

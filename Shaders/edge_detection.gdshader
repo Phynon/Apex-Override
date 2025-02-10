@@ -16,7 +16,7 @@ varying float lineMask;
 
 float GetLinearDepth(vec2 sUV, sampler2D depthTexture, mat4 invProjectionMat, float mask){
 	// Raw depth to linear depth code from:
-	// https://docs.godotengine.org/en/4.2/tutorials/shaders/advanced_postprocessing.html
+	// https://docs.godotengine.org/en/latest/tutorials/shaders/advanced_postprocessing.html
 	float depth = texture(depthTexture, sUV).x * mask;
 	vec3 ndc = vec3(sUV * 2.0 - 1.0, depth);
     vec4 view = invProjectionMat * vec4(ndc, 1.0);
@@ -55,21 +55,21 @@ void fragment() {
 
 	// Using alpha channel (screen roughness) to mask objects to not receive outlines
 	float outlineMask = texture(NORMAL_TEXTURE, SCREEN_UV).a;
-	outlineMask = ceil(outlineMask);
+	outlineMask = ceil(outlineMask); // Objects with Roughness = 0 will not have and outline
 	
 	// Roberts Cross edge detection
 	// Edge detection with Depth
 	float depthDiff = 0.0;
-	float negDepthDiff = 0.7;
+	float invDepthDiff = 0.5;
 	float depth = GetLinearDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX, outlineMask);
 	
 	for (int i = 0; i < UVOffsets.length(); i++){
 		float dOff = GetLinearDepth(UVOffsets[i],DEPTH_TEXTURE, INV_PROJECTION_MATRIX, outlineMask);
 		depthDiff += clamp(dOff - depth, 0.0, 1.0);
-		negDepthDiff += depth - dOff;
+		invDepthDiff += depth - dOff;
 	}
-	negDepthDiff = clamp(negDepthDiff, 0.0, 1.0);
-	negDepthDiff = clamp(smoothstep(0.9, 0.9, negDepthDiff) * 10.0 , 0.0, 1.0);
+	invDepthDiff = clamp(invDepthDiff, 0.0, 1.0);
+	invDepthDiff = clamp(smoothstep(0.9, 0.9, invDepthDiff) * 10.0 , 0.0, 1.0);
 	depthDiff = smoothstep(0.2, 0.3, depthDiff);
 
 	// Edge detection with Normals
@@ -81,8 +81,8 @@ void fragment() {
 		vec3 nOff = GetNormal(UVOffsets[i],NORMAL_TEXTURE, outlineMask);
 		normalDiff += NormalEdgeIndicator(normalEdgeBias, normal, nOff, depthDiff);
 	}
-	normalDiff = smoothstep(0.5, 0.9, normalDiff);
-	normalDiff = clamp(normalDiff - negDepthDiff, 0.0, 1.0);
+	normalDiff = smoothstep(0.5, 0.5, normalDiff);
+	normalDiff = clamp(normalDiff - invDepthDiff, 0.0, 1.0);
 
 
 	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb; 
