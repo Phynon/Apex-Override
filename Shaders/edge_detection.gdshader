@@ -30,11 +30,11 @@ vec3 GetNormal(vec2 uv, sampler2D normalTexture, float mask){
 	return normal;
 }
 
-float NormalEdgeIndicator(vec3 normalEdgeBias, vec3 normal, vec3 neighborNormal, float depthDiff){
+float NormalEdgeIndicator(vec3 normalEdgeBias, vec3 normal, vec3 neighborNormal, float depthDifference){
 	//From Kody King: https://threejs.org/examples/webgl_postprocessing_pixel.html
-	float normalDiff = dot(normal - neighborNormal, normalEdgeBias);
-	float normalIndicator = clamp(smoothstep(-.01, .01, normalDiff), 0.0, 1.0);
-	float depthIndicator = clamp(sign(depthDiff * .25 + .0025), 0.0, 1.0);
+	float normalDifference = dot(normal - neighborNormal, normalEdgeBias);
+	float normalIndicator = clamp(smoothstep(-.01, .01, normalDifference), 0.0, 1.0);
+	float depthIndicator = clamp(sign(depthDifference * .25 + .0025), 0.0, 1.0);
 	return (1.0 - dot(normal, neighborNormal)) * depthIndicator * normalIndicator;
 }
 
@@ -45,7 +45,7 @@ void vertex(){
 void fragment() {
 	vec2 texelSize = 1.0 / VIEWPORT_SIZE.xy;
 	screenUV = SCREEN_UV;
-	
+
 	// UV offsets
 	vec2 UVOffsets[4];
 	UVOffsets[0] = SCREEN_UV + vec2(0.0, -1.0) * texelSize;
@@ -56,43 +56,48 @@ void fragment() {
 	// Using alpha channel (screen roughness) to mask objects to not receive outlines
 	float outlineMask = texture(NORMAL_TEXTURE, SCREEN_UV).a;
 	outlineMask = ceil(outlineMask); // Objects with Roughness = 0 will not have and outline
-	
-	// Roberts Cross edge detection
+
 	// Edge detection with Depth
-	float depthDiff = 0.0;
-	float invDepthDiff = 0.5;
+	float depthDifference = 0.0;
+	float invDepthDifference = 0.5;
 	float depth = GetLinearDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX, outlineMask);
-	
+
 	for (int i = 0; i < UVOffsets.length(); i++){
 		float dOff = GetLinearDepth(UVOffsets[i],DEPTH_TEXTURE, INV_PROJECTION_MATRIX, outlineMask);
-		depthDiff += clamp(dOff - depth, 0.0, 1.0);
-		invDepthDiff += depth - dOff;
+		depthDifference += clamp(dOff - depth, 0.0, 1.0);
+		invDepthDifference += depth - dOff;
 	}
-	invDepthDiff = clamp(invDepthDiff, 0.0, 1.0);
-	invDepthDiff = clamp(smoothstep(0.9, 0.9, invDepthDiff) * 10.0 , 0.0, 1.0);
-	depthDiff = smoothstep(0.2, 0.3, depthDiff);
+	invDepthDifference = clamp(invDepthDifference, 0.0, 1.0);
+	invDepthDifference = clamp(smoothstep(0.9, 0.9, invDepthDifference) * 10.0 , 0.0, 1.0);
+	depthDifference = smoothstep(0.25, 0.3, depthDifference);
 
 	// Edge detection with Normals
-	float normalDiff = 0.;
+	float normalDifference = 0.;
 	vec3 normalEdgeBias = (vec3(1.0, 1.0, 1.0));
 	vec3 normal = GetNormal(SCREEN_UV, NORMAL_TEXTURE, outlineMask);
-	
+	float normaltest = 0.;
+
 	for (int i = 0; i < UVOffsets.length(); i++){
 		vec3 nOff = GetNormal(UVOffsets[i],NORMAL_TEXTURE, outlineMask);
-		normalDiff += NormalEdgeIndicator(normalEdgeBias, normal, nOff, depthDiff);
+		normalDifference += NormalEdgeIndicator(normalEdgeBias, normal, nOff, depthDifference);
+		normaltest += normalDifference;
 	}
-	normalDiff = smoothstep(0.5, 0.5, normalDiff);
-	normalDiff = clamp(normalDiff - invDepthDiff, 0.0, 1.0);
+	normalDifference = smoothstep(0.2, 0.2, normalDifference);
+	normalDifference = clamp(normalDifference - invDepthDifference, 0.0, 1.0);
 
 
-	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb; 
-	lineMask = clamp(0.1, lineAlpha, (depthDiff + normalDiff * 5.0));
-	
+	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+	lineMask = clamp(0.1, lineAlpha, (depthDifference + normalDifference * 5.0));
+
+	//ALBEDO = vec3(clamp(depthDiff + normalDiff, 0.0, 1.0)); //code for just adding outline as is
 	if (!useLighting){
-		ALBEDO += clamp((normalDiff - depthDiff), 0.0, 1.0) * lineHighlight;
-		ALBEDO -= ALBEDO * depthDiff * lineShadow;
+		ALBEDO += clamp((normalDifference - depthDifference), 0.0, 1.0) * lineHighlight;
+		ALBEDO -= ALBEDO * depthDifference * lineShadow;
+		//ALBEDO = vec3(normalDifference + depthDifference); //apagar - usar para gravar outline final
+		//ALBEDO = vec3(normaltest); //apagar - usar para gravar normal final
+		//ALBEDO = GetNormal(SCREEN_UV, NORMAL_TEXTURE, outlineMask); //apagar - usar para grava screen normal
+		//ALBEDO = vec3(pow(depth * 0.07, 2.0)); //apagar - usar para gravar screen depth
 	}
-	//ALBEDO -= lineMask;
 }
 
 void light (){
@@ -104,9 +109,9 @@ void light (){
 		float dotNL = dot(normal.rgb, LIGHT);
 		dotNL = pow(dotNL, 2.5);
 		dotNL = clamp(dotNL, 0.0, 1.0);
-	
+
 		if(LIGHT_IS_DIRECTIONAL)
-			DIFFUSE_LIGHT += mix(vec3(1.0), dotNL * LIGHT_COLOR * lightIntensity, lineMask);	
+			DIFFUSE_LIGHT += mix(vec3(1.0), dotNL * LIGHT_COLOR * lightIntensity, lineMask);
 	}
 	else
 		DIFFUSE_LIGHT = vec3(1.0);
