@@ -17,6 +17,7 @@ config/icon="res://Assets/icon.png"
 
 [display]
 
+window/size/borderless=true
 window/stretch/scale_mode="integer"
 
 [rendering]

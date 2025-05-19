@@ -4,6 +4,7 @@ render_mode specular_disabled, ambient_light_disabled;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 uniform sampler2D NORMAL_TEXTURE : hint_normal_roughness_texture, filter_nearest;
+
 uniform float lightIntensity = 1.25;
 uniform float lineAlpha = 0.7;
 uniform bool useLighting = true;
@@ -73,14 +74,12 @@ void fragment() {
 
 	// Edge detection with Normals
 	float normalDifference = 0.;
-	vec3 normalEdgeBias = (vec3(1.0, 1.0, 1.0));
+	vec3 normalEdgeBias = vec3(1.0, 1.0, 1.0);
 	vec3 normal = GetNormal(SCREEN_UV, NORMAL_TEXTURE, outlineMask);
-	float normaltest = 0.;
 
 	for (int i = 0; i < UVOffsets.length(); i++){
 		vec3 nOff = GetNormal(UVOffsets[i],NORMAL_TEXTURE, outlineMask);
 		normalDifference += NormalEdgeIndicator(normalEdgeBias, normal, nOff, depthDifference);
-		normaltest += normalDifference;
 	}
 	normalDifference = smoothstep(0.2, 0.2, normalDifference);
 	normalDifference = clamp(normalDifference - invDepthDifference, 0.0, 1.0);
@@ -89,14 +88,10 @@ void fragment() {
 	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	lineMask = clamp(0.1, lineAlpha, (depthDifference + normalDifference * 5.0));
 
-	//ALBEDO = vec3(clamp(depthDiff + normalDiff, 0.0, 1.0)); //code for just adding outline as is
+
 	if (!useLighting){
 		ALBEDO += clamp((normalDifference - depthDifference), 0.0, 1.0) * lineHighlight;
 		ALBEDO -= ALBEDO * depthDifference * lineShadow;
-		//ALBEDO = vec3(normalDifference + depthDifference); //apagar - usar para gravar outline final
-		//ALBEDO = vec3(normaltest); //apagar - usar para gravar normal final
-		//ALBEDO = GetNormal(SCREEN_UV, NORMAL_TEXTURE, outlineMask); //apagar - usar para grava screen normal
-		//ALBEDO = vec3(pow(depth * 0.07, 2.0)); //apagar - usar para gravar screen depth
 	}
 }
 
