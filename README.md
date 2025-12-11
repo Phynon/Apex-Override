@@ -22,23 +22,7 @@ Play as an **amoeba with mind control abilities**, build an army of powerful (or
 
 ## Core Elements
 
-### 1. **Mind Control Mastery**
-- Players don't directly fight; they control other creatures
-- Strategic choice of which animals to mind control
-- Balance between controlling many weak creatures vs. few powerful ones
-- Build diverse armies with complementary abilities
-
-### 2. **Ecosystem Progression**
-- Start at the bottom of the food chain (microscopic level)
-- Climb through distinct ecosystems, each with unique animal rosters
-- Visual and mechanical escalation as you ascend
-- Each ecosystem tells its own ecological story
-
-### 3. **Bullet Hell Chaos**
-- Dense, pattern-based projectile attacks reflecting animal behaviors
-- Controlled creatures provide different defensive/offensive capabilities
-- Environmental hazards that reflect natural ecosystem dangers
-- Strategic positioning and army composition matter
+to be completed
 
 ---
 
@@ -69,9 +53,12 @@ Play as an **amoeba with mind control abilities**, build an army of powerful (or
 ```
 
 ### Between Runs
+
 to be completed
 
-## 🗓️ Development Roadmap
+---
+
+## Development Roadmap
 
 ### Prototype
 
