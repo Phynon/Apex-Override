@@ -10,15 +10,22 @@ config_version=5
 
 [application]
 
-config/name="3D Pixel Art - Tutorial"
+config/name="Apex Override"
+config/name_localized={
+"cmn_CN": "天敌篡逆"
+}
 run/main_scene="res://demo.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Assets/icon.png"
 
-[display]
+[dotnet]
 
-window/size/borderless=true
-window/stretch/scale_mode="integer"
+project/assembly_name="3D Pixel Art - Tutorial"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [rendering]
 

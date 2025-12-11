@@ -1,21 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=22 format=3 uid="uid://c3dywxs16624x"]
 
-[ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/edge_detection.gdshader" id="1_m0rpm"]
+[ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://Assets/checker.jpg" id="2_o52xj"]
+[ext_resource type="Script" uid="uid://qtltj3ti0sp7" path="res://BasicCharacterController.cs" id="3_6bw2v"]
 [ext_resource type="ArrayMesh" uid="uid://caofxnauygyql" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_hp20k"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_odkjl"]
-render_priority = 0
-shader = ExtResource("1_m0rpm")
-shader_parameter/lightIntensity = 1.25
-shader_parameter/lineAlpha = 0.7
-shader_parameter/useLighting = false
-shader_parameter/lineHighlight = 0.2
-shader_parameter/lineShadow = 0.55
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
 
@@ -25,6 +13,9 @@ specular_mode = 2
 albedo_texture = ExtResource("2_o52xj")
 uv1_scale = Vector3(9, 9, 9)
 texture_filter = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c6xj6"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0rpm"]
 albedo_color = Color(1, 0.321569, 0.321569, 1)
@@ -38,6 +29,23 @@ albedo_color = Color(0.231, 0.7, 0.340433, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkr1p"]
 diffuse_mode = 3
 albedo_color = Color(0.231, 0.7, 0.340433, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0rpm"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_m0rpm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hp20k"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odkjl"]
+render_priority = 0
+shader = ExtResource("1_m0rpm")
+shader_parameter/lightIntensity = 1.2
+shader_parameter/lineAlpha = 0.6
+shader_parameter/useLighting = true
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.55
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
 ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
@@ -229,35 +237,33 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 10
+stretch_shrink = 7
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(115, 64)
+size = Vector2i(163, 93)
 render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.03694, 7.50437)
-projection = 1
-size = 6.0
-far = 200.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
-cast_shadow = 0
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_hp20k")
-surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
 
 [node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(11.6393, 0, 11.6393, 0, 16.4604, 0, -11.6393, 0, 11.6393, 0, 0, 0)
+transform = Transform3D(11.639301, 0, 11.639301, 0, 16.460402, 0, -11.639301, 0, 11.639301, 0, 0, 0)
 mesh = SubResource("PlaneMesh_uqnki")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/ground"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_c6xj6")
 
 [node name="icoshpere" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
 transform = Transform3D(60, 0, 0, 0, 59.9999, 0, 0, 0, 60, 0, 3.34115, 0)
@@ -318,6 +324,29 @@ transform = Transform3D(4.28778, 0, 3.53859, 0, 0.453113, 0, -4.28778, 0, 3.5385
 mesh = SubResource("BoxMesh_dqaes")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="CharacterBody" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6030629, 2.14318, 0)
+script = ExtResource("3_6bw2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
+shape = SubResource("BoxShape3D_m0rpm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
+transform = Transform3D(0.80767095, 0.58963346, 0, -0.58963346, 0.80767095, 0, 0, 0, 1, -0.690201, -0.17676926, 2.0576694)
+mesh = SubResource("PrismMesh_m0rpm")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 0.8660253, 0.50000024, 0, -0.50000024, 0.8660253, -1.6030629, 3.8937602, 7.50437)
+projection = 1
+size = 6.0
+far = 200.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody/Camera3D"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_hp20k")
+surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.130521, 0.749389, 0.649138, -1.65989e-06, -0.654743, 0.755851, 0.991446, 0.0986538, 0.0854584, 0, 4.76559, 0)
