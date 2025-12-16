@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://Assets/checker.jpg" id="2_o52xj"]
-[ext_resource type="Script" uid="uid://qtltj3ti0sp7" path="res://BasicCharacterController.cs" id="3_6bw2v"]
-[ext_resource type="ArrayMesh" uid="uid://caofxnauygyql" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
+[ext_resource type="Script" uid="uid://bjwjcy8qh8y0f" path="res://BasicCharacterController.cs" id="3_6bw2v"]
+[ext_resource type="ArrayMesh" uid="uid://b7nvu8o2jt6lb" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
 
@@ -243,11 +243,11 @@ offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 7
+stretch_shrink = 5
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(163, 93)
+size = Vector2i(229, 130)
 render_target_update_mode = 4
 
 [node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -337,10 +337,11 @@ transform = Transform3D(0.80767095, 0.58963346, 0, -0.58963346, 0.80767095, 0, 0
 mesh = SubResource("PrismMesh_m0rpm")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
-transform = Transform3D(1, 0, 0, 0, 0.8660253, 0.50000024, 0, -0.50000024, 0.8660253, -1.6030629, 3.8937602, 7.50437)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.4433415, 7.2529764, 13.284124)
 projection = 1
-size = 6.0
-far = 200.0
+fov = 60.0
+size = 12.0
+far = 400.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody/Camera3D"]
 cast_shadow = 0

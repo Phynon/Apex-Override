@@ -29,12 +29,12 @@ public partial class BasicCharacterController : CharacterBody3D
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * Speed;
-			velocity.Z = direction.Z * Speed;
+			velocity.Z = direction.Z * 2 * Speed;
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, 2 * Speed);
 		}
 
 		Velocity = velocity;
