@@ -1,9 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=25 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://Assets/checker.jpg" id="2_o52xj"]
 [ext_resource type="Script" uid="uid://bjwjcy8qh8y0f" path="res://BasicCharacterController.cs" id="3_6bw2v"]
-[ext_resource type="ArrayMesh" uid="uid://b7nvu8o2jt6lb" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
+[ext_resource type="ArrayMesh" uid="uid://caofxnauygyql" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
+[ext_resource type="PackedScene" uid="uid://b3uafl6xj253k" path="res://Assets/Envs/Mushroom_Laetiporus.gltf" id="3_n4w22"]
+[ext_resource type="PackedScene" uid="uid://cwlvh4suwbaux" path="res://Assets/Charas/bear.fbx" id="5_n4w22"]
+[ext_resource type="PackedScene" uid="uid://hdymt50reisb" path="res://Assets/Envs/Mushroom_Common.gltf" id="7_d4o4o"]
+[ext_resource type="PackedScene" uid="uid://ba8wqfgnibsot" path="res://Assets/Envs/tree_winter_001.tscn" id="8_gdsc3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
 
@@ -14,7 +18,7 @@ albedo_texture = ExtResource("2_o52xj")
 uv1_scale = Vector3(9, 9, 9)
 texture_filter = 0
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c6xj6"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n4w22"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0rpm"]
@@ -30,10 +34,6 @@ albedo_color = Color(0.231, 0.7, 0.340433, 1)
 diffuse_mode = 3
 albedo_color = Color(0.231, 0.7, 0.340433, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m0rpm"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_m0rpm"]
-
 [sub_resource type="QuadMesh" id="QuadMesh_hp20k"]
 flip_faces = true
 size = Vector2(2, 2)
@@ -46,6 +46,9 @@ shader_parameter/lineAlpha = 0.6
 shader_parameter/useLighting = true
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_884kg"]
+points = PackedVector3Array(-0.7461838, 0.76282454, -0.000104665756, -0.7461838, 0.68868506, -0.21160457, -0.86646897, 0.76000607, -0.000104665756, -0.7461838, 0.68868506, 0.21150047, 0.1003356, 0.67532766, 0.15791488, -0.15359962, 0.7221397, -0.000104665756, 0.1003356, 0.67532766, -0.15801898, -0.72911775, 0.5779046, -0.34383148, -0.86646897, 0.6858665, -0.21160457, 0.098896265, 0.64064753, -0.22318494, 0.114934325, 0.5511899, -0.34793726, -0.86646897, 0.6858665, 0.21150047, -0.9842867, 0.73035026, -0.000104665756, -0.72911775, 0.5779046, 0.3437274, 0.114934325, 0.5511899, 0.34783316, 0.098896265, 0.64064753, 0.22308087, 0.2348082, 0.49996623, 0.31814528, 0.24570584, 0.5569495, 0.17875957, 0.41903985, 0.48562852, 0.024214149, 0.41698372, 0.49224594, 5.9604645e-07, 0.08779311, 0.68843997, 5.9604645e-07, 0.41903985, 0.48562852, -0.024318218, 0.24570584, 0.5569495, -0.17886367, 0.2348082, 0.49996623, -0.31824934, -0.7258279, 0.5045004, -0.41331378, -1.2285581, 0.50572586, -0.3061426, -1.2380164, 0.5325631, -0.27266476, 0.22884536, 0.30364963, -0.4344743, 0.107943416, 0.32668802, -0.47616366, -0.05510974, 0.53219545, -0.36983472, -1.2380164, 0.5325631, 0.27256066, -1.2285581, 0.50572586, 0.3060385, -1.2470634, 0.6119721, -0.000104665756, -0.7258279, 0.5045004, 0.41310441, -0.05510974, 0.53219545, 0.3697306, 0.107943416, 0.32668802, 0.47605956, 0.22884536, 0.30364963, 0.43437022, 0.3213724, 0.27056256, 0.39120698, 0.42644203, 0.4670017, 0.03284675, 0.434461, 0.44862, 0.02305609, 0.434461, 0.44862, -0.02316016, 0.42644203, 0.4670017, -0.03295088, 0.3213724, 0.27056256, -0.39131105, -0.68079805, 0.18907037, -0.51911634, -0.01974392, 0.3070809, -0.48500687, -1.216838, 0.42043474, -0.31814408, -1.6264243, 0.1747326, -0.07790381, -1.4380803, 0.40940568, -0.15159714, -0.8084854, 0.1481404, -0.4831119, -1.3525443, 0.48697647, -0.1805481, -1.3525443, 0.56099343, -0.000104665756, 0.33741033, 0.12228349, -0.4331057, 0.2492013, 0.14127794, -0.4760584, 0.12932742, 0.15904692, -0.50585157, -1.3525443, 0.48697647, 0.180444, -1.4380803, 0.40940568, 0.15149307, -1.6264243, 0.1747326, 0.077694416, -1.216838, 0.42043474, 0.31804, -0.8084854, 0.1481404, 0.4830078, -0.68079805, 0.18907037, 0.5190122, -0.01974392, 0.3070809, 0.48490274, 0.12932742, 0.15904692, 0.50574744, 0.2492013, 0.14127794, 0.4759543, 0.33741033, 0.12228349, 0.43300164, 0.37873924, -0.04817617, 0.37709993, 0.43733966, 0.44126734, 5.9604645e-07, 0.37894475, -0.04817617, -0.37720403, -0.6277492, -0.083836675, -0.53775024, -0.73240757, -0.083836675, -0.5144842, 0.1461879, -0.017540008, -0.5192216, -0.7930642, -0.48909196, -0.4887968, -1.5906471, 0.124121696, -0.09390578, -1.6297141, 0.12902346, -0.000104665756, -1.6630238, 0.1861293, -0.000104665756, -1.6527431, 0.2012023, -0.029266179, -1.6369107, 0.22865227, -0.026002645, -1.5073729, 0.4069548, -0.000104665756, -1.4580251, 0.4652861, -0.000104665756, 0.34522378, -0.035799146, -0.4531082, 0.265445, -0.029794455, -0.4911129, -1.6369107, 0.22865227, 0.025898516, -1.6527431, 0.2012023, 0.029162109, -1.5906471, 0.124121696, 0.09380168, -0.7930642, -0.48909196, 0.48869276, -0.73240757, -0.083836675, 0.5143801, -0.6277492, -0.083836675, 0.53775144, 0.1461879, -0.017540008, 0.5191176, 0.265445, -0.029794455, 0.49100876, 0.34522378, -0.035799146, 0.45300406, 0.37092578, -0.12709495, 0.3831007, 0.35015857, -0.12709495, 0.45310938, 0.3320644, -0.48909196, 0.44658226, 0.3353542, -0.48909196, 0.3768894, 0.3353542, -0.48909196, -0.37699348, 0.35015857, -0.12709495, -0.45321345, 0.37092578, -0.12709495, -0.38320476, 0.3320644, -0.48909196, -0.44668633, -0.62055266, -0.13775635, -0.5360658, -0.701154, -0.48909196, -0.5115365, 0.17517972, -0.07268509, -0.5168003, -0.8319256, -0.48909196, -0.44068557, -0.8319256, -0.48909196, 0.4405815, -1.6397892, 0.23710784, -0.000104665756, 0.28004372, -0.12709495, -0.49427116, -0.701154, -0.48909196, 0.5114324, -0.62055266, -0.13775635, 0.53596175, 0.17517972, -0.07268509, 0.5166962, 0.28004372, -0.12709495, 0.4941671, 0.29320312, -0.23321864, 0.48690307, 0.30142772, -0.48909196, 0.4747963, 0.30142772, -0.48909196, -0.47490036, 0.29320312, -0.23321864, -0.4870071, 0.25269675, -0.48909196, -0.49027067, 0.19368505, -0.12709495, -0.5123787, 0.25269675, -0.48909196, 0.49016654, 0.19368505, -0.12709495, 0.5122746)
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
 ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
@@ -243,11 +246,11 @@ offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 5
+stretch_shrink = 7
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(229, 130)
+size = Vector2i(163, 93)
 render_target_update_mode = 4
 
 [node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -258,12 +261,10 @@ mesh = SubResource("PlaneMesh_uqnki")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/ground"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0)
+[node name="StaticBody3D2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/ground/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_c6xj6")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/ground/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_n4w22")
 
 [node name="icoshpere" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
 transform = Transform3D(60, 0, 0, 0, 59.9999, 0, 0, 0, 60, 0, 3.34115, 0)
@@ -290,7 +291,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
 
 [node name="cube8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.672609, 0, 0.672609, 0, 0.951216, 0, -0.672609, 0, 0.672609, -3.47073, 2.96076, -1.08467)
+transform = Transform3D(0.6726089, 0, 0.6726089, -0.0063860514, 0.9511731, 0.0063860514, -0.67257863, -0.009031271, 0.67257863, -3.47073, 2.96076, -1.08467)
 mesh = SubResource("BoxMesh_dqaes")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
@@ -325,16 +326,18 @@ mesh = SubResource("BoxMesh_dqaes")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
 
+[node name="Mushroom_Laetiporus2" parent="SubViewportContainer/SubViewport/meshes" instance=ExtResource("3_n4w22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3488832, 0.16022536, 3.7363396)
+
+[node name="Mushroom_Laetiporus3" parent="SubViewportContainer/SubViewport/meshes" instance=ExtResource("3_n4w22")]
+transform = Transform3D(0.4372727, 0, -0.89932895, 0, 1, 0, 0.89932895, 0, 0.4372727, 2.0790222, 0.50811094, 1.7769935)
+
 [node name="CharacterBody" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6030629, 2.14318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6030629, 2.6485424, 4.077284)
 script = ExtResource("3_6bw2v")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
-shape = SubResource("BoxShape3D_m0rpm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
-transform = Transform3D(0.80767095, 0.58963346, 0, -0.58963346, 0.80767095, 0, 0, 0, 1, -0.690201, -0.17676926, 2.0576694)
-mesh = SubResource("PrismMesh_m0rpm")
+[node name="bear" parent="SubViewportContainer/SubViewport/CharacterBody" instance=ExtResource("5_n4w22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25706315, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.4433415, 7.2529764, 13.284124)
@@ -348,6 +351,10 @@ cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_hp20k")
 surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, -4.371139e-08, 0, 4.371139e-08, 1, 0.15700078, 0.4998989, 0)
+shape = SubResource("ConvexPolygonShape3D_884kg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.130521, 0.749389, 0.649138, -1.65989e-06, -0.654743, 0.755851, 0.991446, 0.0986538, 0.0854584, 0, 4.76559, 0)
@@ -364,3 +371,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_xr1em")
 }
 autoplay = "moving_objects"
+
+[node name="Mushroom_Common2" parent="." instance=ExtResource("7_d4o4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13266647, 0.017470969, 3.9116974)
+
+[node name="Tree_Winter_002" parent="." instance=ExtResource("8_gdsc3")]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 2, 2.641646, 0.0146457255, -4.0707273)
+
+[editable path="SubViewportContainer/SubViewport/CharacterBody/bear"]
