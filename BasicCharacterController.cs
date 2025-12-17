@@ -28,6 +28,9 @@ public partial class BasicCharacterController : CharacterBody3D
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
+			double _targetAngle = Mathf.Atan2(direction.X, direction.Z);
+			var meshNode = GetNode<Node3D>("bear");
+			meshNode.Rotation = new Vector3(meshNode.Rotation.X, (float)Mathf.LerpAngle(meshNode.Rotation.Y, _targetAngle, delta), meshNode.Rotation.Z);
 			velocity.X = direction.X * Speed;
 			velocity.Z = direction.Z * 2 * Speed;
 		}

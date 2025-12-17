@@ -15,12 +15,12 @@ config/name_localized={
 "cmn_CN": "天敌篡逆"
 }
 run/main_scene="res://demo.tscn"
-config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.png"
 
 [dotnet]
 
-project/assembly_name="3D Pixel Art - Tutorial"
+project/assembly_name="Apex Override"
 
 [editor]
 
