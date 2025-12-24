@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex Override", "Apex Override.csproj", "{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex Override", "Apex Override.csproj", "{BB4601CB-06F3-497D-BF5F-3C141139D410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{C6651749-A19C-4BB3-A82D-C1C0EB1CA143}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{BB4601CB-06F3-497D-BF5F-3C141139D410}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
