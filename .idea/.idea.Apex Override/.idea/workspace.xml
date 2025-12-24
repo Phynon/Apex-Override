@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/libraries/GdSdk.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apex Override.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Apex Override.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apex Override.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Apex Override.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/2025-12-17 16-49-57.mov" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicCharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicCharacterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera3d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Camera3d.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/MobBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/ProjectileBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/ProjectileBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TriggerAreaBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/TriggerAreaBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +18,25 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Phynon"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Phynon/Apex-Override.git",
+    "accountId": "e89dd4b8-2ddb-4fb7-b5a0-b9ab248d31aa"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -55,13 +58,13 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "XThreadsFramesViewSplitterKey": "0.29706392",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "stats__0",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.log",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -161,8 +164,25 @@
       <workItem from="1766559170365" duration="173000" />
       <workItem from="1766559390408" duration="698000" />
       <workItem from="1766560226240" duration="4213000" />
-      <workItem from="1766567854507" duration="3902000" />
+      <workItem from="1766567854507" duration="5612000" />
     </task>
+    <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
+      <option name="closed" value="true" />
+      <created>1766577755613</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766577755613</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(build): add rider workspace">
+      <option name="closed" value="true" />
+      <created>1766577842367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766577842367</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +218,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat(build): migrate to rider cs style" />
+    <MESSAGE value="feat(build): add rider workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(build): add rider workspace" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
