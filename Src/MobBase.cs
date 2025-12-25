@@ -2,7 +2,7 @@ using Godot;
 
 public partial class MobBase : Node
 {
-    public int health = 100;
+    public int Health = 100;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -16,8 +16,8 @@ public partial class MobBase : Node
 
     public void _TakeDamage(int amount)
     {
-        health -= amount;
-        if (health <= 0)
+        Health -= amount;
+        if (Health <= 0)
         {
             QueueFree();
         }

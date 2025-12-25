@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Apex Override.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Apex Override.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/MobBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/ProjectileBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/ProjectileBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +28,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Phynon"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Phynon&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Phynon/Apex-Override.git",
-    "accountId": "e89dd4b8-2ddb-4fb7-b5a0-b9ab248d31aa"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Phynon/Apex-Override.git&quot;,
+    &quot;accountId&quot;: &quot;e89dd4b8-2ddb-4fb7-b5a0-b9ab248d31aa&quot;
   }
-}]]></component>
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Src/Charas/Bear.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -64,7 +70,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -164,7 +170,11 @@
       <workItem from="1766559170365" duration="173000" />
       <workItem from="1766559390408" duration="698000" />
       <workItem from="1766560226240" duration="4213000" />
-      <workItem from="1766567854507" duration="5612000" />
+      <workItem from="1766567854507" duration="8345000" />
+      <workItem from="1766645113415" duration="230000" />
+      <workItem from="1766645438402" duration="135000" />
+      <workItem from="1766645585480" duration="1780000" />
+      <workItem from="1766650981710" duration="6664000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -182,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766577842367</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="chore(build): exclude tscn files from lfs">
+      <option name="closed" value="true" />
+      <created>1766579542909</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766579542909</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +238,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="feat(build): migrate to rider cs style" />
     <MESSAGE value="feat(build): add rider workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(build): add rider workspace" />
+    <MESSAGE value="chore(build): exclude tscn files from lfs" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore(build): exclude tscn files from lfs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
