@@ -6,16 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apex Override.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Apex Override.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/MobBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/ProjectileBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/ProjectileBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicCharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Utils/ManualController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicCharacterController.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Utils/ManualController.cs.uid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera3d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Utils/Camera3d.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera3d.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Utils/Camera3d.cs.uid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/MobBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/MobBase.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/demo.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/phynon/Apex-Override" value="37HTOzClmm0UAMopGKX7v71NeGr" />
+    </persistenceIdMap>
   </component>
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
@@ -41,7 +49,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Charas/Bear.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Charas/Bear.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/share/dotnet/sdk/10.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -56,6 +66,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Executable.Player.executor": "Run",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Attach to Process.81091:Godot.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -70,7 +81,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -175,6 +186,10 @@
       <workItem from="1766645438402" duration="135000" />
       <workItem from="1766645585480" duration="1780000" />
       <workItem from="1766650981710" duration="6664000" />
+      <workItem from="1766753009673" duration="54000" />
+      <workItem from="1766753124380" duration="345000" />
+      <workItem from="1766753487005" duration="97000" />
+      <workItem from="1766754027799" duration="30625000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />

@@ -5,4 +5,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <RootNamespace>ApexOverride</RootNamespace>
     </PropertyGroup>
+    <ItemGroup>
+        <Folder Include="Assets\Charas\"/>
+    </ItemGroup>
 </Project>
