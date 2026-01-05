@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=29 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://Assets/checker.jpg" id="2_o52xj"]
 [ext_resource type="ArrayMesh" uid="uid://caofxnauygyql" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
+[ext_resource type="Script" uid="uid://dp3srhus8b11c" path="res://Cube9.cs" id="3_gxmxl"]
 [ext_resource type="Script" uid="uid://bjwjcy8qh8y0f" path="res://Src/Utils/ManualController.cs" id="3_kem5a"]
 [ext_resource type="PackedScene" uid="uid://c7chiucktl0w3" path="res://Assets/Charas/Bear.tscn" id="4_kem5a"]
 [ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Utils/Camera3d.cs" id="5_kem5a"]
@@ -140,6 +141,7 @@ transform = Transform3D(0.58539, 0, 0.58539, 0, 0.827869, 0, -0.58539, 0, 0.5853
 mesh = SubResource("BoxMesh_dqaes")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_dkr1p")
+script = ExtResource("3_gxmxl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube9"]
 
@@ -253,6 +255,7 @@ far = 400.0
 script = ExtResource("5_kem5a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_hp20k")

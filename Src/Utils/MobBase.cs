@@ -10,6 +10,8 @@ public abstract partial class MobBase : CharacterBody3D, IDamageable
 
     public void TakeDamage(int amount)
     {
+        GD.Print($"Mob took {amount} damage!");
+        QueueFree();
     }
 
     public override void _PhysicsProcess(double delta)
