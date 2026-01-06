@@ -6,6 +6,13 @@
         <RootNamespace>ApexOverride</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Assets\Charas\"/>
+        <Content Include=".gitattributes"/>
+        <Content Include="Charas\Bear\attack.mov"/>
+        <Content Include="Charas\Bear\bear.fbx"/>
+        <Content Include="Charas\Bear\bear.fbx.import"/>
+        <Content Include="Charas\Bear\Bear.tscn"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Assets\"/>
     </ItemGroup>
 </Project>

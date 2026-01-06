@@ -1,5 +1,20 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
 Assets/** filter=lfs diff=lfs merge=lfs -text
+
+Charas/** filter=lfs diff=lfs merge=lfs -text
 # lfs support except for these file types
-Assets/**/*.tscn -filter -diff -merge text
+Charas/**/*.tscn -filter -diff -merge text
+Charas/**/*.tres -filter -diff -merge text
+Charas/**/*.cs -filter -diff -merge text
+Charas/**/*.gdshader -filter -diff -merge text
+
+Levels/** filter=lfs diff=lfs merge=lfs -text
+# lfs support except for these file types
+Levels/**/*.tscn -filter -diff -merge text
+Levels/**/*.tres -filter -diff -merge text
+Levels/**/*.cs -filter -diff -merge text
+Levels/**/*.gdshader -filter -diff -merge text
+
+*.uid -filter -diff -merge text
+*.import -filter -diff -merge text

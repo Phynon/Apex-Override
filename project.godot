@@ -18,7 +18,7 @@ config/name="Apex Override"
 config/name_localized={
 "cmn_CN": "天敌篡逆"
 }
-run/main_scene="res://demo.tscn"
+run/main_scene="uid://c3dywxs16624x"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Assets/icon.png"
 

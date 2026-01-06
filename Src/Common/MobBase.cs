@@ -1,7 +1,7 @@
 using ApexOverride.Interfaces;
 using Godot;
 
-namespace ApexOverride.Utils;
+namespace ApexOverride.Common;
 
 public abstract partial class MobBase : CharacterBody3D, IDamageable
 {
