@@ -5,8 +5,6 @@ public partial class EntityStats : Node
     [Signal]
     public delegate void DiedEventHandler();
 
-    // --- SIGNALS (The wiring) ---
-    // These allow the UI and the Wolf to react without being tightly coupled.
     [Signal]
     public delegate void HealthChangedEventHandler(int newHealth);
 
@@ -19,7 +17,6 @@ public partial class EntityStats : Node
         CurrentHealth = MaxHealth;
     }
 
-    // The Wolf calls this method. The math happens here.
     public void TakeDamage(int amount)
     {
         if (CurrentHealth <= 0)

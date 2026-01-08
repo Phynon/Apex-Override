@@ -5,36 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Autoloads/Notifications.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Charas/Bear/attack.mov" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Charas/Bear/bear.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Charas/Bear/bear.fbx.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Charas/wild_animals_map.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Charas/wild_animals_map.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Levels/Menu/Menu.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/placeholder.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apex Override.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Apex Override.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/attack.mov" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/bear.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/bear.fbx.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/wild_animals_map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Charas/wild_animals_map.png.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Charas/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Charas/Bear.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/Camera3d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/Camera3d.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/Camera3d.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/Camera3d.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/EntityStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EntityStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/EntityStats.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EntityStats.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/ManualController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/ManualController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/ManualController.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/ManualController.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Utils/MobBase.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Levels/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charas/Bear/attack.mov" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/attack.mov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/EntityStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EntityStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Interfaces/IDamagable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Interfaces/IDamagable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +79,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.network.NetworkConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -210,7 +187,9 @@
       <workItem from="1766753009673" duration="54000" />
       <workItem from="1766753124380" duration="345000" />
       <workItem from="1766753487005" duration="97000" />
-      <workItem from="1766754027799" duration="55939000" />
+      <workItem from="1766754027799" duration="58234000" />
+      <workItem from="1767770701194" duration="620000" />
+      <workItem from="1767774207894" duration="13529000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -252,7 +231,23 @@
       <option name="project" value="LOCAL" />
       <updated>1767623237907</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chore(build): update project structure">
+      <option name="closed" value="true" />
+      <created>1767691721746</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1767691721746</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(build): update lfs settings">
+      <option name="closed" value="true" />
+      <created>1767691933118</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1767691933118</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +289,9 @@
     <MESSAGE value="chore(build): exclude tscn files from lfs" />
     <MESSAGE value="feat(chara): decouple Bear, add attack control and anim" />
     <MESSAGE value="feat(chara): add attack area and damage handling for Bear" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(chara): add attack area and damage handling for Bear" />
+    <MESSAGE value="chore(build): update project structure" />
+    <MESSAGE value="feat(build): update lfs settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(build): update lfs settings" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

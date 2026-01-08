@@ -5,14 +5,17 @@ namespace ApexOverride.Common;
 
 public abstract partial class MobBase : CharacterBody3D, IDamageable
 {
+    [Signal]
+    public delegate void DamagedEventHandler(int amount);
+
     protected abstract float Speed { get; }
     protected abstract float RotateSpeed { get; }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
-        GD.Print($"Mob took {amount} damage!");
-        QueueFree();
+        EmitSignal(SignalName.Damaged, amount);
     }
+
 
     public override void _PhysicsProcess(double delta)
     {
