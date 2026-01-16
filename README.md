@@ -62,14 +62,14 @@ to be completed
 
 ### Prototype
 
-- [ ] Basic player movement and controls
-  - [ ] Controller input
-  - [ ] Camera follow
-  - [ ] Hitbox visualization (debug mode)
+- [x] Basic player movement and controls
+  - [x] Controller input
+  - [x] Camera follow
+  - [x] Hitbox visualization (debug mode)
 
 - [ ] Single creature type
-  - [ ] Movement
-  - [ ] Basic attack
+  - [x] Movement
+  - [x] Basic attack
   - [ ] Special ability
 
 - [ ] Animal control mechanic implementation
@@ -85,7 +85,7 @@ to be completed
 
 - [ ] Basic combat arena
   - [ ] Simple square arena
-  - [ ] Enemy spawner
+  - [x] Enemy spawner
   - [ ] Wave system (basic)
 
 **Milestone:** Playable prototype stage with attacks, moves and deaths
