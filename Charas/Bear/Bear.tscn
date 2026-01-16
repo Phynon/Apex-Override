@@ -1,13 +1,18 @@
-[gd_scene load_steps=26 format=4 uid="uid://cd7p3j0squa"]
+[gd_scene load_steps=36 format=4 uid="uid://cd7p3j0squa"]
 
 [ext_resource type="Script" uid="uid://klfdee3uo7tn" path="res://Charas/Bear/Bear.cs" id="1_2lf4a"]
-[ext_resource type="Texture2D" uid="uid://bbxr0aef1y1i2" path="res://Charas/wild_animals_map.png" id="1_pohfs"]
+[ext_resource type="Script" uid="uid://bokymsxg0kbf7" path="res://Src/Common/AIController.cs" id="2_u35od"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lrlc"]
+load_path = "res://.godot/imported/wild_animals_map.png-354b6de28aca1a8773685d7bb0a8ca26.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u35od"]
-albedo_texture = ExtResource("1_pohfs")
+resource_local_to_scene = true
+albedo_texture = SubResource("CompressedTexture2D_3lrlc")
 emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l2rqf"]
+resource_local_to_scene = true
 resource_name = "Mesh"
 _surfaces = [{
 "aabb": AABB(-1.6630238, -0.48909196, -0.53775024, 2.100569, 1.2519165, 1.0755017),
@@ -85,6 +90,18 @@ bind/17/name = &"Hind_Foot_R"
 bind/17/bone = -1
 bind/17/pose = Transform3D(0.3426871, -0.93944854, 1.5395599e-06, -0.93863064, -0.34238762, 0.041734345, -0.039206777, -0.014303224, -0.99912864, -0.46691778, 0.122731104, -0.42161223)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3lrlc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqjyx"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bvj4s"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_3lrlc")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_cqjyx")
+blend_point_1/pos = 1.0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pohfs"]
 animation = &"attack"
 
@@ -100,42 +117,80 @@ animation = &"walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_884kg"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gxmxl"]
+[sub_resource type="Curve" id="Curve_88x7h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m86fh"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_88x7h")
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_3lrlc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqjyx"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_3lrlc")
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_u35od"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_88x7h"]
+xfade_time = 0.3
+xfade_curve = SubResource("Curve_u35od")
 advance_mode = 2
 advance_expression = "GetAnimationState() == 1"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4w22"]
+[sub_resource type="Curve" id="Curve_o1bsx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aygis"]
+xfade_time = 0.3
+xfade_curve = SubResource("Curve_o1bsx")
 advance_mode = 2
 advance_expression = "GetAnimationState() == 0"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npqno"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m86fh"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqjyx"]
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="Curve" id="Curve_cqjyx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bvj4s"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_cqjyx")
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_bvj4s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npqno"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_bvj4s")
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_svejp"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_bvj4s")
+states/BlendSpace1D/position = Vector2(806.757, 20.9375)
 states/Start/position = Vector2(204, 99.5)
 states/attack/node = SubResource("AnimationNodeAnimation_pohfs")
 states/attack/position = Vector2(573.5, 15)
 states/flash/node = SubResource("AnimationNodeAnimation_u35od")
-states/flash/position = Vector2(571.5561, 189.5)
+states/flash/position = Vector2(573.38904, 190.5)
 states/idle/node = SubResource("AnimationNodeAnimation_gxmxl")
-states/idle/position = Vector2(425, 99.875)
+states/idle/position = Vector2(415, 100.05469)
 states/walk/node = SubResource("AnimationNodeAnimation_n4w22")
-states/walk/position = Vector2(725, 99.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_884kg"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_gxmxl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_n4w22"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_npqno"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_m86fh"), "flash", "idle", SubResource("AnimationNodeStateMachineTransition_cqjyx"), "flash", "walk", SubResource("AnimationNodeStateMachineTransition_bvj4s")]
-graph_offset = Vector2(102.61216, -22)
+states/walk/position = Vector2(711, 100.21875)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_884kg"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_m86fh"), "flash", "idle", SubResource("AnimationNodeStateMachineTransition_cqjyx"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_88x7h"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_aygis"), "flash", "walk", SubResource("AnimationNodeStateMachineTransition_bvj4s"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_npqno")]
+graph_offset = Vector2(205.52655, -25.662514)
 
 [sub_resource type="Animation" id="Animation_60w8g"]
 resource_name = "RESET"
@@ -458,6 +513,68 @@ tracks/18/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u35od"]
+resource_name = "flash"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.1, 0, 0.1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnHurtFinished"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_npqno"]
 resource_name = "idle"
 tracks/0/type = "position_3d"
@@ -599,68 +716,6 @@ tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, -0.016704274, -0.012644459, 0.6146831, 0.7884959, 0.1, 1, -0.01965683, -0.0076570017, 0.3722102, 0.9279087, 0.2, 1, -0.015316012, -0.014205574, 0.6905828, 0.72295165, 0.3, 1, -0.013921034, -0.015500134, 0.75352293, 0.6570915, 0.4, 1, -0.019381842, -0.008291834, 0.40307444, 0.9149243, 0.5, 1, -0.018892363, -0.009296462, 0.45191664, 0.89181167, 0.6, 1, -0.016555786, -0.012827118, 0.62356853, 0.78148824, 0.7, 1, -0.014381829, -0.015098154, 0.7339822, 0.67884856, 0.8, 1, -0.016704274, -0.012644459, 0.6146831, 0.7884959)
 
-[sub_resource type="Animation" id="Animation_u35od"]
-resource_name = "flash"
-length = 0.6
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Armature/Skeleton3D/bear:mesh:surface_0/material:emission:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1, -0.1, 0, 0.1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"OnHurtFinished"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3fn3g"]
 _data = {
 &"RESET": SubResource("Animation_60w8g"),
@@ -710,7 +765,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(0.10804635, 0.9941458, 1.3007856e-08, -0.9941458, 0.10804635, -1.9633414e-07, -1.9659024e-07, 8.281475e-09, 1, -1.446468e-07, 0.23047999, 5.574822e-13)
 bones/3/enabled = true
 bones/3/position = Vector3(-5.959788e-08, 0.23047996, -2.842171e-14)
-bones/3/rotation = Quaternion(-0.0077339993, -0.021144602, -0.8936572, 0.44818512)
+bones/3/rotation = Quaternion(6.872502e-08, 7.039851e-08, -0.667815, 0.7443273)
 bones/3/scale = Vector3(1, 1, 0.9999998)
 bones/4/name = "Front_Leg_L"
 bones/4/parent = 1
@@ -820,6 +875,7 @@ skin = SubResource("Skin_erhvb")
 tree_root = SubResource("AnimationNodeStateMachine_svejp")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/BlendSpace1D/blend_position = -0.34492427
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -835,3 +891,9 @@ shape = SubResource("ConvexPolygonShape3D_2lf4a")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 0.99999976, -1.3211255, 0.6833103, 0)
 shape = SubResource("BoxShape3D_2lf4a")
+
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("Pawn", "Target")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.1920929e-07, 0, 4.7683716e-07)
+script = ExtResource("2_u35od")
+Pawn = NodePath("..")
+Target = NodePath("..")
