@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1jnt7g6o36lp"]
+
+[ext_resource type="Script" uid="uid://dauablnwyxesx" path="res://UI/HealthBar2D.cs" id="1_mrfbb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mrfbb")
