@@ -1,12 +1,19 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=34 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
+[ext_resource type="Shader" uid="uid://c5kg2vsljfunv" path="res://Shaders/SubPixel.gdshader" id="1_pbvbt"]
 [ext_resource type="Texture2D" uid="uid://ci38v0jfp4220" path="res://Assets/checker.jpg" id="2_o52xj"]
 [ext_resource type="ArrayMesh" uid="uid://caofxnauygyql" path="res://Assets/icosphere_mesh.res" id="3_c6xj6"]
 [ext_resource type="Script" uid="uid://dp3srhus8b11c" path="res://Cube9.cs" id="3_gxmxl"]
 [ext_resource type="Script" uid="uid://bjwjcy8qh8y0f" path="res://Src/Common/ManualController.cs" id="3_kem5a"]
 [ext_resource type="PackedScene" uid="uid://cd7p3j0squa" path="res://Charas/Bear/Bear.tscn" id="5_gxmxl"]
 [ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Common/Camera3d.cs" id="5_kem5a"]
+[ext_resource type="Script" uid="uid://bcl30qggblxjj" path="res://Src/Common/EnemyManager.cs" id="9_f0imo"]
+[ext_resource type="Script" uid="uid://dauablnwyxesx" path="res://UI/HealthBar2D.cs" id="10_pbvbt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbvbt"]
+shader = ExtResource("1_pbvbt")
+shader_parameter/CamOffset = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
 
@@ -86,17 +93,21 @@ shader_parameter/useLighting = true
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0imo"]
+size = Vector3(3.2175293, 1, 3.4372559)
+
 [node name="World" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_pbvbt")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -4.0
-offset_right = 2.277588
-offset_bottom = 3.0
+offset_left = -90.0
+offset_top = -45.0
+offset_right = 90.0
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
@@ -104,13 +115,14 @@ stretch_shrink = 6
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(192, 109)
+size = Vector2i(350, 195)
+size_2d_override = Vector2i(324, 180)
 render_target_update_mode = 4
 
 [node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(11.639301, 0, 11.639301, 0, 16.460402, 0, -11.639301, 0, 11.639301, 0, 0, 0)
+transform = Transform3D(11.6393, 0, 11.6393, 0, 16.460402, 0, -11.6393, 0, 11.6393, 0, 0, 0)
 mesh = SubResource("PlaneMesh_uqnki")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
@@ -231,11 +243,8 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.6030629, 
 script = ExtResource("3_kem5a")
 Mob = NodePath("../Bear")
 
-[node name="Bear" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_gxmxl")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 1.6030629, -0.002911687, 4.964777)
-
-[node name="Bear2" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_gxmxl")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 8.233618, -0.002911687, -4.817918)
+[node name="Bear" parent="SubViewportContainer/SubViewport" groups=["Players"] instance=ExtResource("5_gxmxl")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.04211235, 0, 6.4228697)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.130521, 0.749389, 0.649138, -1.65989e-06, -0.654743, 0.755851, 0.991446, 0.0986538, 0.0854584, 0, 4.76559, 0)
@@ -255,7 +264,7 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.49999997, 0.86602545, 
 projection = 1
 fov = 60.0
 size = 12.0
-far = 400.0
+far = 1600.0
 script = ExtResource("5_kem5a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
@@ -263,3 +272,25 @@ cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_hp20k")
 surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
+
+[node name="EnemyManager" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("SpawnZones")]
+script = ExtResource("9_f0imo")
+EnemyScene = ExtResource("5_gxmxl")
+SpawnInterval = 10.0
+SpawnZones = [NodePath("Area3D")]
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/EnemyManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.066399, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/EnemyManager/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0033531, 0.474885, 0.5638428)
+shape = SubResource("BoxShape3D_f0imo")
+
+[node name="WorldUI" type="CanvasLayer" parent="." groups=["WorldUI"]]
+
+[node name="HealthBar2D" type="Control" parent="WorldUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_pbvbt")
