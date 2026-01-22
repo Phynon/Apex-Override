@@ -1,4 +1,5 @@
 using ApexOverride.Common;
+using ApexOverride.Interfaces;
 using Godot;
 
 public partial class AIController : Node
@@ -57,7 +58,7 @@ public partial class AIController : Node
             Pawn.Move(Vector2.Zero, delta); // Stop moving
             if (_attackTimer <= 0)
             {
-                Pawn.Attack();
+                (Pawn as IMeleeAttacker)?.Attack();
                 _attackTimer = 2.0f;
             }
         }

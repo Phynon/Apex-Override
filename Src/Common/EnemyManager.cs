@@ -56,6 +56,7 @@ public partial class EnemyManager : Node3D
     private void SpawnEnemy(Vector3 position)
     {
         Node3D enemy = EnemyScene.Instantiate<Node3D>();
+        enemy.AddToGroup("Mobs");
         AddChild(enemy);
         enemy.GlobalPosition = position;
 

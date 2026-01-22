@@ -1,4 +1,5 @@
 using ApexOverride.Common;
+using ApexOverride.Interfaces;
 using Godot;
 
 public partial class ManualController : Node
@@ -27,7 +28,7 @@ public partial class ManualController : Node
         Mob?.Move(inputDir, delta);
         if (Input.IsActionJustPressed("ui_accept"))
         {
-            Mob?.Attack();
+            (Mob as IMeleeAttacker)?.Attack();
         }
     }
 }

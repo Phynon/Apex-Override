@@ -22,6 +22,11 @@ run/main_scene="uid://c3dywxs16624x"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Assets/icon.png"
 
+[autoload]
+
+UIEvents="*res://Autoloads/UIEvents.cs"
+CombatEvents="*res://Autoloads/CombatEvents.cs"
+
 [display]
 
 window/size/viewport_width=1920

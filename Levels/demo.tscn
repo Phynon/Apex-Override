@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=36 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Shader" uid="uid://c5kg2vsljfunv" path="res://Shaders/SubPixel.gdshader" id="1_pbvbt"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Common/Camera3d.cs" id="5_kem5a"]
 [ext_resource type="Script" uid="uid://bcl30qggblxjj" path="res://Src/Common/EnemyManager.cs" id="9_f0imo"]
 [ext_resource type="Script" uid="uid://dauablnwyxesx" path="res://UI/HealthBar2D.cs" id="10_pbvbt"]
+[ext_resource type="Script" uid="uid://cdyalrv6ex0w6" path="res://UI/WorldUIManager.cs" id="10_tdfjp"]
+[ext_resource type="PackedScene" uid="uid://1jnt7g6o36lp" path="res://UI/HealthBar2D.tscn" id="11_ov5nb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pbvbt"]
 shader = ExtResource("1_pbvbt")
@@ -275,8 +277,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
 
 [node name="EnemyManager" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("SpawnZones")]
 script = ExtResource("9_f0imo")
-EnemyScene = ExtResource("5_gxmxl")
 SpawnInterval = 10.0
+EnemyScene = ExtResource("5_gxmxl")
 SpawnZones = [NodePath("Area3D")]
 
 [node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/EnemyManager"]
@@ -286,9 +288,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.066399, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0033531, 0.474885, 0.5638428)
 shape = SubResource("BoxShape3D_f0imo")
 
-[node name="WorldUI" type="CanvasLayer" parent="." groups=["WorldUI"]]
+[node name="WorldUIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("Camera") groups=["WorldUI"]]
+script = ExtResource("10_tdfjp")
+HealthBarScene = ExtResource("11_ov5nb")
+Camera = NodePath("../SubViewportContainer/SubViewport/Camera3D")
 
-[node name="HealthBar2D" type="Control" parent="WorldUI"]
+[node name="HealthBar2D" type="Control" parent="WorldUIManager"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
