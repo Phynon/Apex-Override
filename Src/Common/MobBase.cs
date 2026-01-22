@@ -52,6 +52,4 @@ public abstract partial class MobBase : CharacterBody3D, IDamageable
 
         Velocity = velocity;
     }
-
-    public abstract void Attack();
 }

@@ -1,11 +1,11 @@
+using ApexOverride.Autoloads;
 using ApexOverride.Common;
 using ApexOverride.Interfaces;
-using ApexOverride.UI;
 using Godot;
 
 namespace ApexOverride.Charas.Bear;
 
-public partial class Bear : MobBase
+public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
 {
     public enum BearState
     {
@@ -24,15 +24,39 @@ public partial class Bear : MobBase
     private Area3D _attackArea;
     private CollisionShape3D _attackShape;
 
-    // UI
-    private HealthBar2D _healthBar;
-
     // stats
     private EntityStats _stats;
     protected override float Speed => 4.0f;
     protected override float RotateSpeed => 10.0f;
 
     public BearState State { get; set; }
+
+    // attack methods
+    public void Attack()
+    {
+        if (State is BearState.Attacking or BearState.Hurting)
+        {
+            return;
+        }
+
+        State = BearState.Attacking;
+        _animationStateMachine.Travel("attack");
+    }
+
+    public void OnAttackHit()
+    {
+        _attackShape.Disabled = false;
+    }
+
+    public EntityStats GetEntityStats() => _stats;
+
+    public void InitializeStats()
+    {
+        _stats = new EntityStats();
+        _stats.Name = "EntityStats";
+        _stats.Died += OnDied;
+        AddChild(_stats);
+    }
 
     public BearState GetAnimationState() => State;
 
@@ -49,54 +73,7 @@ public partial class Bear : MobBase
         _attackShape.Disabled = true;
 
         InitializeStats();
-        InitializeUi();
-    }
-
-    private void InitializeStats()
-    {
-        _stats = new EntityStats();
-        _stats.Name = "EntityStats";
-
-        base.Damaged += _stats.TakeDamage;
-        _stats.Died += OnDied;
-        AddChild(_stats);
-    }
-
-    private void InitializeUi()
-    {
-        if (_stats == null) return;
-
-        var barScene = GD.Load<PackedScene>("res://UI/HealthBar2D.tscn");
-        _healthBar = barScene.Instantiate<HealthBar2D>();
-
-        var uiLayer = GetTree().GetFirstNodeInGroup("WorldUI");
-        if (uiLayer != null)
-        {
-            uiLayer.AddChild(_healthBar);
-
-            // 1. FIND THE CAMERA
-            // Since Bear is inside the SubViewport, this gets the correct 3D camera.
-
-            if (GetViewport().GetCamera3D() is not Camera3d mainCam)
-            {
-                GD.PrintErr("Bear: No active Camera3d found in SubViewport!");
-                return;
-            }
-
-            // 2. PASS IT TO THE UI
-            _healthBar.Initialize(this, _stats, mainCam);
-        }
-    }
-
-    // 4. ADD: Clean up when Bear is deleted
-    public override void _ExitTree()
-    {
-        // If the bear is deleted, the UI must also be deleted manually
-        // because it is NOT a child of the Bear (it's a child of CanvasLayer)
-        if (IsInstanceValid(_healthBar))
-        {
-            _healthBar.QueueFree();
-        }
+        UIEvents.Bus.EmitSignal(UIEvents.SignalName.HealthBarRequested, this, _stats);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -124,23 +101,6 @@ public partial class Bear : MobBase
         }
 
         base.Move(targetDirection, delta);
-    }
-
-    // attack methods
-    public override void Attack()
-    {
-        if (State is BearState.Attacking or BearState.Hurting)
-        {
-            return;
-        }
-
-        State = BearState.Attacking;
-        _animationStateMachine.Travel("attack");
-    }
-
-    public void OnAttackHit()
-    {
-        _attackShape.Disabled = false;
     }
 
     public void OnAttackFinished()
@@ -178,7 +138,8 @@ public partial class Bear : MobBase
         }
 
         base.TakeDamage(amount); // This emits the Damaged signal
-        GD.Print($"Bear took {amount} damage!");
+        _stats.TakeDamage(amount);
+
         if (State is BearState.Attacking)
         {
             return;
