@@ -24,7 +24,8 @@ public partial class Camera3d : Camera3D
     {
         if (IsInstanceValid(_controller.Mob))
         {
-            _actualPosition = _actualPosition.Lerp(_controller.Mob.Position + _globalOffset, 10.0f * (float)delta);
+            // TODO: still minor jitters on health bar to fix
+            _actualPosition = _actualPosition.Lerp(_controller.Mob.Position + _globalOffset, 5.0f * (float)delta);
             Vector3 localOffset3d = _actualPosition.Round() - _actualPosition;
             Vector2 localOffset2d = new Vector2(localOffset3d.X, localOffset3d.Z / 2) * 90.0f;
             _material.SetShaderParameter("CamOffset", localOffset2d);
