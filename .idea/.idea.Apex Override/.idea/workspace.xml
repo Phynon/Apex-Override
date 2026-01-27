@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Src/Common/CameraPix.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/Screen.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/checker.jpg.import" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/checker.jpg.import" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Levels/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Levels/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/AIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/AIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/Camera3d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/Camera3d.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/ManualController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/ManualController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shaders/SubPixel.gdshader" beforeDir="false" afterPath="$PROJECT_DIR$/Shaders/SubPixel.gdshader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/Camera3d.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/Camera3d.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/CameraPix.cs.uid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UI/HealthBar2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HealthBar2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/WorldUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/WorldUIManager.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs.uid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +30,13 @@
   </component>
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Spatial" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -56,13 +65,15 @@
     <setting file="file://$PROJECT_DIR$/Src/Common/AIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Common/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Interfaces/IStatsBearer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UI/WorldUIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UI/Screen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c378f459c054fecaf4484a0fa6d44c055a800/4a/267e6b5a/BaseMaterial3D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b83f6fd6f7554da593701262959c78495bf200/65/bee70afe/ScriptManagerBridge.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ef7eb68894584c62b1d42863efc2ef251046510/b5/f48eaa40/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e622e57738468252eaa11bbc963658fff1e0/Godot.NativeInterop.NativeFuncs.generated.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/33337ed85311965ad7c491cbc362b449f4d53e9/ApexOverride.Autoloads.UIEvents_ScriptSignals.generated.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f4de5d08361312bf810502cb534e99bb624df54b3caca3aa7cd72fc5841c1/NativeCalls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6d724a58dac6cead45738ae69288dc1f41addb424143aabfadff20f99bbc9f/CanvasItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/716d154fef5cbe863cd637bd32beda6e3cec5f12e8fed2dc5b2d8149a0d558ab/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/10.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -76,27 +87,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Player.executor&quot;: &quot;Debug&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Attach to Process.81091:Godot.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.29706392&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Debug",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Attach to Process.81091:Godot.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "XThreadsFramesViewSplitterKey": "0.29706392",
+    "git-widget-placeholder": "dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Debug GDScript (Running session)" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
       <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Attach&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
@@ -206,7 +217,10 @@
       <workItem from="1767774207894" duration="13675000" />
       <workItem from="1767928010131" duration="11174000" />
       <workItem from="1768215800670" duration="36462000" />
-      <workItem from="1768811420205" duration="21458000" />
+      <workItem from="1768811420205" duration="24893000" />
+      <workItem from="1769140750373" duration="19000" />
+      <workItem from="1769140783990" duration="37000" />
+      <workItem from="1769140914980" duration="50530000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -296,7 +310,31 @@
       <option name="project" value="LOCAL" />
       <updated>1769091179734</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat(ui): decouple health bar">
+      <option name="closed" value="true" />
+      <created>1769091359718</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1769091359718</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat(world): update AI and Manual controllers">
+      <option name="closed" value="true" />
+      <created>1769091393070</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1769091393070</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix(camera): reduce follow lerp speed">
+      <option name="closed" value="true" />
+      <created>1769091440798</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769091440798</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +394,10 @@
     <MESSAGE value="feat(utils): add attack and stats interfaces" />
     <MESSAGE value="feat(utils): add combat and UI event bus" />
     <MESSAGE value="chore(git): update Dist" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(git): update Dist" />
+    <MESSAGE value="feat(ui): decouple health bar" />
+    <MESSAGE value="feat(world): update AI and Manual controllers" />
+    <MESSAGE value="fix(camera): reduce follow lerp speed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(camera): reduce follow lerp speed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

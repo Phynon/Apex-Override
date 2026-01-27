@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=39 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Shader" uid="uid://c5kg2vsljfunv" path="res://Shaders/SubPixel.gdshader" id="1_pbvbt"]
@@ -7,15 +7,25 @@
 [ext_resource type="Script" uid="uid://dp3srhus8b11c" path="res://Cube9.cs" id="3_gxmxl"]
 [ext_resource type="Script" uid="uid://bjwjcy8qh8y0f" path="res://Src/Common/ManualController.cs" id="3_kem5a"]
 [ext_resource type="PackedScene" uid="uid://cd7p3j0squa" path="res://Charas/Bear/Bear.tscn" id="5_gxmxl"]
-[ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Common/Camera3d.cs" id="5_kem5a"]
+[ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Common/CameraPix.cs" id="7_tdfjp"]
 [ext_resource type="Script" uid="uid://bcl30qggblxjj" path="res://Src/Common/EnemyManager.cs" id="9_f0imo"]
+[ext_resource type="Script" uid="uid://cdyalrv6ex0w6" path="res://UI/UIManager.cs" id="9_tdfjp"]
 [ext_resource type="Script" uid="uid://dauablnwyxesx" path="res://UI/HealthBar2D.cs" id="10_pbvbt"]
-[ext_resource type="Script" uid="uid://cdyalrv6ex0w6" path="res://UI/WorldUIManager.cs" id="10_tdfjp"]
 [ext_resource type="PackedScene" uid="uid://1jnt7g6o36lp" path="res://UI/HealthBar2D.tscn" id="11_ov5nb"]
+[ext_resource type="Script" uid="uid://b80d7omoutba1" path="res://UI/Screen.cs" id="13_kfhob"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbvbt"]
-shader = ExtResource("1_pbvbt")
-shader_parameter/CamOffset = Vector2(0, 0)
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
+ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
+
+[sub_resource type="Sky" id="Sky_kypv1"]
+sky_material = SubResource("PhysicalSkyMaterial_xc73o")
+
+[sub_resource type="Environment" id="Environment_n4gow"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_kypv1")
+ssil_intensity = 4.0
+sdfgi_read_sky_light = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uqnki"]
 
@@ -23,7 +33,7 @@ shader_parameter/CamOffset = Vector2(0, 0)
 diffuse_mode = 3
 specular_mode = 2
 albedo_texture = ExtResource("2_o52xj")
-uv1_scale = Vector3(9, 9, 9)
+uv1_scale = Vector3(10, 10, 10)
 texture_filter = 0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n4w22"]
@@ -69,18 +79,10 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d4o4o"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xc73o"]
-ground_color = Color(0.176178, 0.131568, 0.0777401, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_ov5nb"]
 
-[sub_resource type="Sky" id="Sky_kypv1"]
-sky_material = SubResource("PhysicalSkyMaterial_xc73o")
-
-[sub_resource type="Environment" id="Environment_n4gow"]
-background_mode = 2
-background_energy_multiplier = 2.0
-sky = SubResource("Sky_kypv1")
-ssil_intensity = 4.0
-sdfgi_read_sky_light = false
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0imo"]
+size = Vector3(3.2175293, 1, 3.4372559)
 
 [sub_resource type="QuadMesh" id="QuadMesh_hp20k"]
 flip_faces = true
@@ -95,207 +97,216 @@ shader_parameter/useLighting = true
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f0imo"]
-size = Vector3(3.2175293, 1, 3.4372559)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov5nb"]
+shader = ExtResource("1_pbvbt")
+shader_parameter/CamOffset = Vector2(0, 0)
 
-[node name="World" type="Node3D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ov5nb"]
+viewport_path = NodePath("LowresViewport")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_pbvbt")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -45.0
-offset_right = 90.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 6
+[node name="Game" type="Node3D"]
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(350, 195)
-size_2d_override = Vector2i(324, 180)
-render_target_update_mode = 4
+[node name="World" type="Node3D" parent="."]
 
-[node name="meshes" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_n4gow")
 
-[node name="ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(11.6393, 0, 11.6393, 0, 16.460402, 0, -11.6393, 0, 11.6393, 0, 0, 0)
-mesh = SubResource("PlaneMesh_uqnki")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/ground/StaticBody3D2"]
-shape = SubResource("ConcavePolygonShape3D_n4w22")
-
-[node name="icoshpere" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(60, 0, 0, 0, 59.9999, 0, 0, 0, 60, 0, 3.34115, 0)
-mesh = ExtResource("3_c6xj6")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_m0rpm")
-
-[node name="cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.998333, 0, 0.998333, 0, 1.41186, 0, -0.998333, 0, 0.998333, 0, 0.819036, 0)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_gdsc3")
-
-[node name="cube9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.58539, 0, 0.58539, 0, 0.827869, 0, -0.58539, 0, 0.58539, -2.00928, 1.06355, 2.62341)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_dkr1p")
-script = ExtResource("3_gxmxl")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube9/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_svejp")
-
-[node name="cube7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.672609, 0, 0.672609, 0, 0.951216, 0, -0.672609, 0, 0.672609, -4.4321, 1.42611, -0.0344589)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube7/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_36gju")
-
-[node name="cube8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.6726089, 0, 0.6726089, -0.0063860514, 0.9511731, 0.0063860514, -0.67257863, -0.009031271, 0.67257863, -3.47073, 2.96076, -1.08467)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube8/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_tql22")
-
-[node name="cube2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.998333, 0, 0.998333, 0, 2.29213, 0, -0.998333, 0, 0.998333, 4.12221, 1.24502, -0.197803)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_kem5a")
-
-[node name="cube3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.998333, 0, 0.998333, 0, 3.01124, 0, -0.998333, 0, 0.998333, 3.12605, 1.58668, -1.19744)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_gxmxl")
-
-[node name="cube4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(0.998333, 0, 0.998333, 0, 1.65436, 0, -0.998333, 0, 0.998333, 3.13411, 0.928415, 0.811643)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube4/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_n4w22")
-
-[node name="cube5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(1.43963, 0, 1.42278, 0, 2.49326, 0, -1.43963, 0, 1.42278, -3.45486, 1.23364, -1.18273)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube5/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_jbdfk")
-
-[node name="cube6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/meshes"]
-transform = Transform3D(4.28778, 0, 3.53859, 0, 0.453113, 0, -4.28778, 0, 3.53859, 2.18025, 0.217412, -0.171057)
-mesh = SubResource("BoxMesh_dqaes")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/meshes/cube6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/meshes/cube6/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_d4o4o")
-
-[node name="ManualController" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("Mob")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.6030629, -0.0029115677, 4.964778)
-script = ExtResource("3_kem5a")
-Mob = NodePath("../Bear")
-
-[node name="Bear" parent="SubViewportContainer/SubViewport" groups=["Players"] instance=ExtResource("5_gxmxl")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.04211235, 0, 6.4228697)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.130521, 0.749389, 0.649138, -1.65989e-06, -0.654743, 0.755851, 0.991446, 0.0986538, 0.0854584, 0, 4.76559, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.13052092, 0.7493872, 0.64914036, -1.6598885e-06, -0.65474147, 0.75585294, 0.99144554, 0.09865355, 0.0854587, 0, 4.76559, 0)
 shadow_enabled = true
 shadow_bias = 0.2
 shadow_blur = 0.1
 directional_shadow_mode = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_n4gow")
+[node name="meshes" type="Node3D" parent="World"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
-autoplay = "moving_objects"
+[node name="ground" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(17.67767, 0, 17.67767, 0, 25, 0, -17.67767, 0, 17.67767, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uqnki")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_tfxb1")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.49999997, 0.86602545, 1.1920929e-07, 7.3, 18.249)
-projection = 1
-fov = 60.0
-size = 12.0
-far = 1600.0
-script = ExtResource("5_kem5a")
+[node name="StaticBody3D2" type="StaticBody3D" parent="World/meshes/ground"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
-cast_shadow = 0
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_hp20k")
-surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/ground/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_n4w22")
 
-[node name="EnemyManager" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("SpawnZones")]
+[node name="icoshpere" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(60, 0, 0, 0, 59.9999, 0, 0, 0, 60, 0, 3.34115, 0)
+mesh = ExtResource("3_c6xj6")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_m0rpm")
+
+[node name="cube" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 1.41186, 0, -0.998333, 0, 0.998333, 0, 0.819036, 0)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_gdsc3")
+
+[node name="cube9" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.58539, 0, 0.58539, 0, 0.827869, 0, -0.58539, 0, 0.58539, -2.00928, 1.06355, 2.62341)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_dkr1p")
+script = ExtResource("3_gxmxl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube9/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_svejp")
+
+[node name="cube7" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.672609, 0, 0.672609, 0, 0.951216, 0, -0.672609, 0, 0.672609, -4.4321, 1.42611, -0.0344589)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube7/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_36gju")
+
+[node name="cube8" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.6726089, 0, 0.6726089, -0.0063860514, 0.9511731, 0.0063860514, -0.67257863, -0.009031271, 0.67257863, -3.47073, 2.96076, -1.08467)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube8/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_tql22")
+
+[node name="cube2" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 2.29213, 0, -0.998333, 0, 0.998333, 4.12221, 1.24502, -0.197803)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_kem5a")
+
+[node name="cube3" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 3.01124, 0, -0.998333, 0, 0.998333, 3.12605, 1.58668, -1.19744)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_gxmxl")
+
+[node name="cube4" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(0.998333, 0, 0.998333, 0, 1.65436, 0, -0.998333, 0, 0.998333, 3.13411, 0.928415, 0.811643)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n4w22")
+
+[node name="cube5" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(1.43963, 0, 1.42278, 0, 2.49326, 0, -1.43963, 0, 1.42278, -3.45486, 1.23364, -1.18273)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jbdfk")
+
+[node name="cube6" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(4.28778, 0, 3.53859, 0, 0.453113, 0, -4.28778, 0, 3.53859, 2.18025, 0.217412, -0.171057)
+mesh = SubResource("BoxMesh_dqaes")
+skeleton = NodePath("../../../LowresViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_gi8eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/meshes/cube6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/meshes/cube6/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_d4o4o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/meshes"]
+transform = Transform3D(1.4142135, 0, 1.4142135, 0, 2, 0, -1.4142135, 0, 1.4142135, 6.7867546, 1.1197891, 4.6196957)
+mesh = SubResource("BoxMesh_ov5nb")
+
+[node name="ManualController" type="Node3D" parent="World" node_paths=PackedStringArray("Mob")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.6030629, -0.0029115677, 4.964778)
+script = ExtResource("3_kem5a")
+Mob = NodePath("../Bear")
+
+[node name="Bear" parent="World" groups=["Players"] instance=ExtResource("5_gxmxl")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.04211235, 0, 6.4228697)
+
+[node name="EnemyManager" type="Node3D" parent="World" node_paths=PackedStringArray("SpawnZones")]
 script = ExtResource("9_f0imo")
 SpawnInterval = 10.0
 EnemyScene = ExtResource("5_gxmxl")
 SpawnZones = [NodePath("Area3D")]
 
-[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/EnemyManager"]
+[node name="Area3D" type="Area3D" parent="World/EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.066399, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/EnemyManager/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/EnemyManager/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0033531, 0.474885, 0.5638428)
 shape = SubResource("BoxShape3D_f0imo")
 
-[node name="WorldUIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("Camera") groups=["WorldUI"]]
-script = ExtResource("10_tdfjp")
-HealthBarScene = ExtResource("11_ov5nb")
-Camera = NodePath("../SubViewportContainer/SubViewport/Camera3D")
+[node name="LowresViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(480, 270)
+size_2d_override_stretch = true
+render_target_update_mode = 4
 
-[node name="HealthBar2D" type="Control" parent="WorldUIManager"]
+[node name="CameraPix" type="Camera3D" parent="LowresViewport"]
+transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 0, 0.8660254, 0.5, -1.7484555e-07, -0.5, 0.8660254, 0, 16, 36.152)
+projection = 1
+fov = 60.0
+size = 27.0
+far = 1600.0
+script = ExtResource("7_tdfjp")
+DebugFreeCam = true
+
+[node name="EdgeDetectionShader" type="MeshInstance3D" parent="LowresViewport/CameraPix"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_hp20k")
+surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
+
+[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("Camera") groups=["WorldUI"]]
+script = ExtResource("9_tdfjp")
+HealthBarScene = ExtResource("11_ov5nb")
+Camera = NodePath("../LowresViewport/CameraPix")
+
+[node name="HealthBar2D" type="Control" parent="UIManager"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_pbvbt")
+
+[node name="Display" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen" type="Sprite2D" parent="Display"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_ov5nb")
+scale = Vector2(4, 4)
+texture = SubResource("ViewportTexture_ov5nb")
+centered = false
+script = ExtResource("13_kfhob")

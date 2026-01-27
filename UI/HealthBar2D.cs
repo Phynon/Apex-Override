@@ -8,14 +8,14 @@ public partial class HealthBar2D : Control
 {
     // IMPORTANT: Set this to match your SubViewportContainer "Stretch Shrink" or Scale.
     // If you render 320x180 on a 1280x720 screen, this is 4.0f.
-    private const float PixelScale = 6.0f;
+    private const float PixelScale = 4.0f;
     private TextureProgressBar _bar;
-    private Camera3d _camera; // Store the reference
+    private CameraPix _camera; // Store the reference
     private Vector2 _currentDisplacement = Vector2.Zero;
     private EntityStats _stats;
     private Node3D _targetNode;
 
-    public void Initialize(Node3D target, EntityStats stats, Camera3d camera)
+    public void Initialize(Node3D target, EntityStats stats, CameraPix camera)
     {
         _targetNode = target;
         _stats = stats;
@@ -26,7 +26,7 @@ public partial class HealthBar2D : Control
         _bar.MaxValue = _stats.MaxHealth;
         _bar.Value = _stats.CurrentHealth;
         _stats.HealthChanged += OnHealthChanged;
-        _camera.OnSubPixelCorrection += _updateDisplacement;
+        // _camera.OnPixelCorrection += _updateDisplacement;
         OnHealthChanged(_stats.CurrentHealth);
     }
 
@@ -41,8 +41,7 @@ public partial class HealthBar2D : Control
 
         // 2. Get position in the "Tiny" (SubViewport) world
         Vector2 lowResPos =
-            _camera.UnprojectPosition(
-                _targetNode.GlobalPosition + Vector3.Up * 1.8f + Vector3.Right * 3.0f / PixelScale);
+            _camera.UnprojectPosition(_targetNode.GlobalPosition + Vector3.Up * 1.8f);
 
         // Hide if behind camera
         if (_camera.IsPositionBehind(_targetNode.GlobalPosition))
@@ -55,11 +54,14 @@ public partial class HealthBar2D : Control
 
         // 3. Scale UP to the "Big" (CanvasLayer) world
         // We Round() the lowResPos first to ensure it snaps to the game's pixel grid.
-        var snappedX = Mathf.Round(lowResPos.X) * PixelScale;
-        var snappedY = Mathf.Round(lowResPos.Y) * PixelScale;
+        var snappedX = Mathf.Round(lowResPos.X);
+        var snappedY = Mathf.Round(lowResPos.Y);
+
+        Vector2 pos2d = new Vector2(snappedX, snappedY) * PixelScale;
 
         // Apply position centered on the pivot
-        Position = new Vector2(snappedX, snappedY) - (_bar.PivotOffset * PixelScale) + _currentDisplacement;
+        Position = pos2d + new Vector2(6.0f, 0.0f) * PixelScale - (_bar.PivotOffset * PixelScale) -
+                   _currentDisplacement;
     }
 
     // ... SetupProgressBar and OnHealthChanged remain the same ...
@@ -98,6 +100,6 @@ public partial class HealthBar2D : Control
     public override void _ExitTree()
     {
         base._ExitTree();
-        _camera.OnSubPixelCorrection -= _updateDisplacement;
+        // _camera.OnPixelCorrection -= _updateDisplacement;
     }
 }

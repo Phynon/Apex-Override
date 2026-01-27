@@ -5,10 +5,10 @@ using Godot;
 
 namespace ApexOverride.UI;
 
-public partial class WorldUIManager : CanvasLayer
+public partial class UIManager : CanvasLayer
 {
     [Export] public PackedScene HealthBarScene { get; set; }
-    [Export] public Camera3d Camera { get; private set; }
+    [Export] public CameraPix Camera { get; private set; }
 
     public override void _Ready()
     {
