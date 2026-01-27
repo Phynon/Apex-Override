@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/Common/CameraPix.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/Screen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/checker.jpg.import" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/checker.jpg.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Levels/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Levels/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shaders/SubPixel.gdshader" beforeDir="false" afterPath="$PROJECT_DIR$/Shaders/SubPixel.gdshader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/Camera3d.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/Camera3d.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/CameraPix.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/HealthBar2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HealthBar2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/WorldUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/WorldUIManager.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
-    </list>
+    <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +76,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Executable.Player.executor": "Debug",
+    ".NET Executable.Player.executor": "Run",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Attach to Process.81091:Godot.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -220,7 +207,7 @@
       <workItem from="1768811420205" duration="24893000" />
       <workItem from="1769140750373" duration="19000" />
       <workItem from="1769140783990" duration="37000" />
-      <workItem from="1769140914980" duration="50530000" />
+      <workItem from="1769140914980" duration="51086000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -334,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769091440798</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat(visual): reconstruct pixel perfect free cam">
+      <option name="closed" value="true" />
+      <created>1769520543221</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1769520543221</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +392,8 @@
     <MESSAGE value="feat(ui): decouple health bar" />
     <MESSAGE value="feat(world): update AI and Manual controllers" />
     <MESSAGE value="fix(camera): reduce follow lerp speed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(camera): reduce follow lerp speed" />
+    <MESSAGE value="feat(visual): reconstruct pixel perfect free cam" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(visual): reconstruct pixel perfect free cam" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
