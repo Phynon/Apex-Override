@@ -40,7 +40,7 @@ public partial class CameraPix : Camera3D
         Vector2 offset = new Vector2(offset3d.X, offset3d.Y);
         HOffset = offset.X;
         VOffset = offset.Y;
-        OnPixelCorrection?.Invoke(offset);
+        OnPixelCorrection?.Invoke(offset / upp);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

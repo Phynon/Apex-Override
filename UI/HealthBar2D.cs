@@ -26,7 +26,7 @@ public partial class HealthBar2D : Control
         _bar.MaxValue = _stats.MaxHealth;
         _bar.Value = _stats.CurrentHealth;
         _stats.HealthChanged += OnHealthChanged;
-        // _camera.OnPixelCorrection += _updateDisplacement;
+        CameraPix.OnPixelCorrection += _updateDisplacement;
         OnHealthChanged(_stats.CurrentHealth);
     }
 
