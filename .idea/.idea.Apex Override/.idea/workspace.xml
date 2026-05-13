@@ -5,20 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UI/ElementAnchor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Levels/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Levels/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/CameraPix.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/CameraPix.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Common/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UI/HealthBar2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HealthBar2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CopilotChats">
+    <option name="panelChat">
+      <chat>
+        <option name="activeSessionId" value="4ef49f01-c18b-4a90-a171-f8f1e5388760" />
+        <option name="sessions">
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="a6371410-aa56-455e-8182-a1cec9f25724" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="4ef49f01-c18b-4a90-a171-f8f1e5388760" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+        </option>
+        <option name="type" value="PANEL" />
+      </chat>
+    </option>
+  </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_/Users/phynon/Apex-Override" value="37HTOzClmm0UAMopGKX7v71NeGr" />
     </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="inline" value="GPT-5 mini" />
+      <entry key="edit-panel" value="GPT-5 mini" />
+      <entry key="chat-panel" value="Gemini 3 Pro (Preview)" />
+      <entry key="agent-panel" value="Gemini 3 Pro (Preview)" />
+    </selectedModels>
   </component>
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
@@ -57,6 +96,7 @@
     <setting file="file://$PROJECT_DIR$/Src/Common/AIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Common/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Interfaces/IStatsBearer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UI/ElementAnchor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UI/Screen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c378f459c054fecaf4484a0fa6d44c055a800/4a/267e6b5a/BaseMaterial3D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b83f6fd6f7554da593701262959c78495bf200/65/bee70afe/ScriptManagerBridge.cs" root0="FORCE_HIGHLIGHTING" />
@@ -66,6 +106,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f4de5d08361312bf810502cb534e99bb624df54b3caca3aa7cd72fc5841c1/NativeCalls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6d724a58dac6cead45738ae69288dc1f41addb424143aabfadff20f99bbc9f/CanvasItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/716d154fef5cbe863cd637bd32beda6e3cec5f12e8fed2dc5b2d8149a0d558ab/Node.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/79cddf164aba463817e3441e4bf983ba27e2218592b9add3ee2db6914c43b/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/10.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -81,7 +122,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Executable.Player.executor": "Run",
+    ".NET Executable.Player.executor": "Debug",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Attach to Process.81091:Godot.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -96,7 +137,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -212,7 +253,12 @@
       <workItem from="1768811420205" duration="24893000" />
       <workItem from="1769140750373" duration="19000" />
       <workItem from="1769140783990" duration="37000" />
-      <workItem from="1769140914980" duration="59022000" />
+      <workItem from="1769140914980" duration="70874000" />
+      <workItem from="1772779672319" duration="1693000" />
+      <workItem from="1773649222720" duration="5159000" />
+      <workItem from="1778585478281" duration="3978000" />
+      <workItem from="1778643288157" duration="1319000" />
+      <workItem from="1778644655376" duration="19165000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -342,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769521022541</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fix(camera): adjust pixel correction offset calculation">
+      <option name="closed" value="true" />
+      <created>1769777014248</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1769777014248</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +461,8 @@
     <MESSAGE value="fix(camera): reduce follow lerp speed" />
     <MESSAGE value="feat(visual): reconstruct pixel perfect free cam" />
     <MESSAGE value="feat(visual): reconstruct pixel perfect free cam (2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(visual): reconstruct pixel perfect free cam (2)" />
+    <MESSAGE value="fix(camera): adjust pixel correction offset calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(camera): adjust pixel correction offset calculation" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -427,6 +482,32 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Src/Common/EnemyManager.cs</url>
+          <line>29</line>
+          <properties documentPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" containingFunctionPresentation="Method 'AttemptSpawn'">
+            <startOffsets>
+              <option value="882" />
+            </startOffsets>
+            <endOffsets>
+              <option value="918" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Src/Common/EnemyManager.cs</url>
+          <line>84</line>
+          <properties documentPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" containingFunctionPresentation="Method 'IsPositionVisible'">
+            <startOffsets>
+              <option value="2748" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2787" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

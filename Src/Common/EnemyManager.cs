@@ -5,9 +5,8 @@ using Godot.Collections;
 
 public partial class EnemyManager : Node3D
 {
-    private Camera3D _camera;
-
     private Timer _spawnTimer;
+    [Export] public Viewport GameViewport;
     [Export] public int MaxRetries = 10; // How many times to try finding a hidden spot
     [Export] public float SpawnInterval = 20.0f;
     [Export] public PackedScene EnemyScene { get; set; }
@@ -27,11 +26,6 @@ public partial class EnemyManager : Node3D
     private void AttemptSpawn()
     {
         if (EnemyScene == null || SpawnZones.Count == 0) return;
-
-        // Lazy load the camera (it might not be ready at _Ready)
-        if (_camera == null) _camera = GetViewport().GetCamera3D();
-        if (_camera == null) return;
-
         // Try to find a valid point
         for (int i = 0; i < MaxRetries; i++)
         {
@@ -87,13 +81,14 @@ public partial class EnemyManager : Node3D
     private bool IsPositionVisible(Vector3 globalPos)
     {
         // 1. Check if behind the camera (Simple Dot Product)
-        if (_camera.IsPositionBehind(globalPos))
+        CameraPix camera = GameViewport.GetCamera3D() as CameraPix;
+        if (camera.IsPositionBehind(globalPos))
             return false; // Definitely not visible
 
         // 2. Check if inside the screen rectangle
         // Unproject converts 3D World Pos -> 2D Screen Pos
-        Vector2 screenPos = _camera.UnprojectPosition(globalPos);
-        Rect2 viewportRect = GetViewport().GetVisibleRect();
+        Vector2 screenPos = camera.UnprojectPosition(globalPos);
+        Rect2 viewportRect = GameViewport.GetVisibleRect();
 
         // Add a small margin so they don't pop in right at the edge
         // Expanding the rect means "Visible" includes a buffer zone around the screen

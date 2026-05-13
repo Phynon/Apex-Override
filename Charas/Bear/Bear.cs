@@ -1,4 +1,3 @@
-using ApexOverride.Autoloads;
 using ApexOverride.Common;
 using ApexOverride.Interfaces;
 using Godot;
@@ -60,7 +59,7 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
 
     public BearState GetAnimationState() => State;
 
-    public override void _Ready()
+    protected override void Initialize()
     {
         // animation
         _animationTree = GetNode<AnimationTree>("./AnimationTree");
@@ -73,7 +72,6 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
         _attackShape.Disabled = true;
 
         InitializeStats();
-        UIEvents.Bus.EmitSignal(UIEvents.SignalName.HealthBarRequested, this, _stats);
     }
 
     public override void _PhysicsProcess(double delta)

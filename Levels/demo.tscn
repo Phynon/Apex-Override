@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3dywxs16624x"]
+[gd_scene load_steps=38 format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Shader" uid="uid://c6qhkhar3xobg" path="res://Shaders/EdgeDetection.gdshader" id="1_m0rpm"]
 [ext_resource type="Shader" uid="uid://c5kg2vsljfunv" path="res://Shaders/SubPixel.gdshader" id="1_pbvbt"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cgykc85c3iik1" path="res://Src/Common/CameraPix.cs" id="7_tdfjp"]
 [ext_resource type="Script" uid="uid://bcl30qggblxjj" path="res://Src/Common/EnemyManager.cs" id="9_f0imo"]
 [ext_resource type="Script" uid="uid://cdyalrv6ex0w6" path="res://UI/UIManager.cs" id="9_tdfjp"]
-[ext_resource type="Script" uid="uid://dauablnwyxesx" path="res://UI/HealthBar2D.cs" id="10_pbvbt"]
 [ext_resource type="PackedScene" uid="uid://1jnt7g6o36lp" path="res://UI/HealthBar2D.tscn" id="11_ov5nb"]
 [ext_resource type="Script" uid="uid://b80d7omoutba1" path="res://UI/Screen.cs" id="13_kfhob"]
 
@@ -249,14 +248,15 @@ Mob = NodePath("../Bear")
 [node name="Bear" parent="World" groups=["Players"] instance=ExtResource("5_gxmxl")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.04211235, 0, 6.4228697)
 
-[node name="EnemyManager" type="Node3D" parent="World" node_paths=PackedStringArray("SpawnZones")]
+[node name="EnemyManager" type="Node3D" parent="World" node_paths=PackedStringArray("SpawnZones", "GameViewport")]
 script = ExtResource("9_f0imo")
-SpawnInterval = 10.0
+SpawnInterval = 5.0
 EnemyScene = ExtResource("5_gxmxl")
 SpawnZones = [NodePath("Area3D")]
+GameViewport = NodePath("../../LowresViewport")
 
 [node name="Area3D" type="Area3D" parent="World/EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.066399, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.63808, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/EnemyManager/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0033531, 0.474885, 0.5638428)
@@ -269,7 +269,7 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="CameraPix" type="Camera3D" parent="LowresViewport"]
-transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 0, 0.8660254, 0.5, -1.7484555e-07, -0.5, 0.8660254, 0, 16, 36.152)
+transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 0, 0.8660254, 0.5, -1.7484555e-07, -0.5, 0.8660254, 0, 18, 36.152)
 projection = 1
 fov = 60.0
 size = 27.0
@@ -284,15 +284,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_odkjl")
 
 [node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("Camera") groups=["WorldUI"]]
 script = ExtResource("9_tdfjp")
-HealthBarScene = ExtResource("11_ov5nb")
 Camera = NodePath("../LowresViewport/CameraPix")
-
-[node name="HealthBar2D" type="Control" parent="UIManager"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("10_pbvbt")
+HealthBarScene = ExtResource("11_ov5nb")
 
 [node name="Display" type="Control" parent="."]
 layout_mode = 3

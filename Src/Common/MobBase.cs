@@ -1,3 +1,4 @@
+using ApexOverride.Autoloads;
 using ApexOverride.Interfaces;
 using Godot;
 
@@ -14,6 +15,19 @@ public abstract partial class MobBase : CharacterBody3D, IDamageable
     public virtual void TakeDamage(int amount)
     {
         EmitSignal(SignalName.Damaged, amount);
+    }
+
+    public sealed override void _Ready()
+    {
+        Initialize();
+        if (this is IStatsBearer bearer)
+        {
+            UIEvents.Bus.EmitSignal(UIEvents.SignalName.HealthBarRequested, this, bearer.GetEntityStats());
+        }
+    }
+
+    protected virtual void Initialize()
+    {
     }
 
 

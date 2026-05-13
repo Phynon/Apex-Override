@@ -7,44 +7,85 @@ namespace ApexOverride.UI;
 
 public partial class UIManager : CanvasLayer
 {
-    [Export] public PackedScene HealthBarScene { get; set; }
     [Export] public CameraPix Camera { get; private set; }
+
+    [ExportGroup("UI Element Scenes")]
+    [Export]
+    public PackedScene HealthBarScene { get; set; }
+    // [Export] public PackedScene DamageNumberScene { get; set; }
 
     public override void _Ready()
     {
-        // manually trigger health bar creation for existing mobs
-        var existingMobs = GetTree().GetNodesInGroup("Players");
-        foreach (Node node in existingMobs)
-        {
-            if (node is MobBase mob and IStatsBearer bearer)
-            {
-                CreateBar(mob, bearer.GetEntityStats());
-            }
-        }
-
-        UIEvents.Bus.HealthBarRequested += CreateBar;
+        UIEvents.Bus.HealthBarRequested += OnHealthBarRequested;
+        // UIEvents.Bus.DamageNumberRequested += OnDamageNumberRequested;
+        CatchUpExistingMobs();
     }
 
     public override void _ExitTree()
     {
-        // Clean up connection
         if (UIEvents.Bus != null)
         {
-            UIEvents.Bus.HealthBarRequested -= CreateBar;
+            UIEvents.Bus.HealthBarRequested -= OnHealthBarRequested;
+            // UIEvents.Bus.DamageNumberRequested -= OnDamageNumberRequested;
         }
     }
 
-    private void CreateBar(MobBase mob, EntityStats stats)
+    // ─── Event handlers (one line each, all pattern identical) ───
+
+    private void OnHealthBarRequested(MobBase mob, EntityStats stats)
     {
-        if (HealthBarScene == null)
+        ElementAnchor anchor = SpawnAnchor(HealthBarScene, mob);
+        // If the health bar widget needs extra setup, call it:
+        if (anchor.GetChild(0) is HealthBar2D bar)
+            bar.Setup(stats);
+    }
+
+    // private void OnDamageNumberRequested(Vector3 pos, int amount)
+    // {
+    //     ElementAnchor anchor = SpawnDetached(DamageNumberScene, pos);
+    //     if (anchor.GetChild(0) is DamageNumber dmg)
+    //         dmg.Show(amount); // auto-QueueFree after animation
+    // }
+
+    // ─── Spawning helpers ──────────────────────────────────────
+
+    private ElementAnchor SpawnAnchor(PackedScene scene, Node3D target)
+    {
+        if (scene == null) return null;
+
+        ElementAnchor anchor = new ElementAnchor();
+        anchor.Bind(target, Camera);
+        AddChild(anchor);
+
+        Node widget = scene.Instantiate();
+        anchor.AddChild(widget);
+
+        return anchor;
+    }
+
+    private ElementAnchor SpawnDetached(PackedScene scene, Vector3 worldPos)
+    {
+        if (scene == null) return null;
+
+        ElementAnchor anchor = new ElementAnchor();
+        anchor.GameCamera = Camera;
+        AddChild(anchor);
+        anchor.GlobalPosition = Camera.UnprojectPosition(worldPos);
+
+        Node widget = scene.Instantiate();
+        anchor.AddChild(widget);
+
+        return anchor;
+    }
+
+    private void CatchUpExistingMobs()
+    {
+        foreach (Node node in GetTree().GetNodesInGroup("Players"))
         {
-            return;
+            if (node is MobBase mob and IStatsBearer bearer)
+            {
+                OnHealthBarRequested(mob, bearer.GetEntityStats());
+            }
         }
-
-        HealthBar2D bar = HealthBarScene.Instantiate<HealthBar2D>();
-        bar.Initialize(mob, stats, Camera);
-
-        AddChild(bar);
-        mob.TreeExiting += () => bar.QueueFree();
     }
 }

@@ -2,71 +2,34 @@ using Godot;
 
 namespace ApexOverride.UI;
 
-// TODO: decouple!
-
 public partial class HealthBar2D : Control
 {
-    // IMPORTANT: Set this to match your SubViewportContainer "Stretch Shrink" or Scale.
-    // If you render 320x180 on a 1280x720 screen, this is 4.0f.
-    private const float PixelScale = 4.0f;
     private TextureProgressBar _bar;
-    private CameraPix _camera; // Store the reference
-    private Vector2 _currentDisplacement = Vector2.Zero;
     private EntityStats _stats;
-    private Node3D _targetNode;
 
-    public void Initialize(Node3D target, EntityStats stats, CameraPix camera)
+    // Remove Initialize(). Use a Setup method that only takes what it needs.
+    public void Setup(EntityStats stats)
     {
-        _targetNode = target;
         _stats = stats;
-        _camera = camera; // 1. Receive the camera from the Bear
 
         if (_bar == null) SetupProgressBar();
 
         _bar.MaxValue = _stats.MaxHealth;
         _bar.Value = _stats.CurrentHealth;
+
+        // Unsubscribe first to avoid duplicates if called multiple times
+        _stats.HealthChanged -= OnHealthChanged;
         _stats.HealthChanged += OnHealthChanged;
-        CameraPix.OnPixelCorrection += _updateDisplacement;
+
         OnHealthChanged(_stats.CurrentHealth);
     }
 
-    private void _updateDisplacement(Vector2 offset)
-    {
-        _currentDisplacement = offset;
-    }
-
-    public override void _Process(double delta)
-    {
-        if (_targetNode == null || _camera == null) return;
-
-        // 2. Get position in the "Tiny" (SubViewport) world
-        Vector2 lowResPos =
-            _camera.UnprojectPosition(_targetNode.GlobalPosition + Vector3.Up * 1.8f);
-
-        // Hide if behind camera
-        if (_camera.IsPositionBehind(_targetNode.GlobalPosition))
-        {
-            Visible = false;
-            return;
-        }
-
-        Visible = true;
-
-        // 3. Scale UP to the "Big" (CanvasLayer) world
-        // We Round() the lowResPos first to ensure it snaps to the game's pixel grid.
-        var snappedX = Mathf.Round(lowResPos.X);
-        var snappedY = Mathf.Round(lowResPos.Y);
-
-        Vector2 pos2d = new Vector2(snappedX, snappedY) * PixelScale;
-
-        // Apply position centered on the pivot
-        Position = pos2d + new Vector2(6.0f, 0.0f) * PixelScale - (_bar.PivotOffset * PixelScale) -
-                   _currentDisplacement;
-    }
-
-    // ... SetupProgressBar and OnHealthChanged remain the same ...
     private void SetupProgressBar()
     {
+        // ... (Keep your exact existing SetupProgressBar code here) ...
+        // Ensure you remove the "PixelScale" logic from here if you want the 
+        // Anchor to handle scaling, OR keep it here if the bar internals need it.
+        // For now, keeping your existing code is fine.
         _bar = new TextureProgressBar();
         var img = Image.CreateEmpty(1, 1, false, Image.Format.Rgba8);
         img.Fill(Colors.White);
@@ -79,9 +42,9 @@ public partial class HealthBar2D : Control
         _bar.TintProgress = Colors.Green;
         _bar.TextureFilter = TextureFilterEnum.Nearest;
 
-        _bar.CustomMinimumSize = new Vector2(15, 2);
+        _bar.CustomMinimumSize = new Vector2(25, 4);
         _bar.PivotOffset = _bar.CustomMinimumSize / 2;
-        _bar.Scale = new Vector2(PixelScale, PixelScale); // Keep this to make the bar chunky
+        _bar.Scale = new Vector2(4, 4); // Keep this to make the bar chunky
 
         AddChild(_bar);
     }
@@ -95,11 +58,5 @@ public partial class HealthBar2D : Control
             float pct = (float)health / (float)_bar.MaxValue;
             _bar.TintProgress = new Color(1.0f - pct, pct, 0);
         }
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        // _camera.OnPixelCorrection -= _updateDisplacement;
     }
 }
