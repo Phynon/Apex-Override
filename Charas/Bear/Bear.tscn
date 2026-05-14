@@ -1,7 +1,9 @@
-[gd_scene load_steps=36 format=4 uid="uid://cd7p3j0squa"]
+[gd_scene load_steps=38 format=4 uid="uid://cd7p3j0squa"]
 
 [ext_resource type="Script" uid="uid://klfdee3uo7tn" path="res://Charas/Bear/Bear.cs" id="1_2lf4a"]
+[ext_resource type="Script" uid="uid://b5bhlpt4y001m" path="res://Src/Common/Hitbox.cs" id="2_bvj4s"]
 [ext_resource type="Script" uid="uid://bokymsxg0kbf7" path="res://Src/Common/AIController.cs" id="2_u35od"]
+[ext_resource type="Script" uid="uid://c78f1276fd7jm" path="res://Src/Common/Hurtbox.cs" id="4_88x7h"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lrlc"]
 load_path = "res://.godot/imported/wild_animals_map.png-354b6de28aca1a8773685d7bb0a8ca26.s3tc.ctex"
@@ -886,9 +888,10 @@ libraries = {
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.41383848, 0.5017398, 0)
 shape = SubResource("ConvexPolygonShape3D_2lf4a")
 
-[node name="AttackArea" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="."]
+script = ExtResource("2_bvj4s")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 0.99999976, -1.3211255, 0.6833103, 0)
 shape = SubResource("BoxShape3D_2lf4a")
 
@@ -897,3 +900,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.1920929e-
 script = ExtResource("2_u35od")
 Pawn = NodePath("..")
 Target = NodePath("..")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+script = ExtResource("4_88x7h")

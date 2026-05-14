@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UI/ElementAnchor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Common/Hitbox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Common/Hurtbox.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Levels/demo.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Levels/demo.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Common/MobBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Common/MobBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/HealthBar2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HealthBar2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +254,8 @@
       <workItem from="1773649222720" duration="5159000" />
       <workItem from="1778585478281" duration="3978000" />
       <workItem from="1778643288157" duration="1319000" />
-      <workItem from="1778644655376" duration="19165000" />
+      <workItem from="1778644655376" duration="20069000" />
+      <workItem from="1778746131412" duration="6707000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -396,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769777014248</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix(UI): health bar now follows mob movement without round">
+      <option name="closed" value="true" />
+      <created>1778672920494</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778672920494</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +467,8 @@
     <MESSAGE value="feat(visual): reconstruct pixel perfect free cam" />
     <MESSAGE value="feat(visual): reconstruct pixel perfect free cam (2)" />
     <MESSAGE value="fix(camera): adjust pixel correction offset calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(camera): adjust pixel correction offset calculation" />
+    <MESSAGE value="fix(UI): health bar now follows mob movement without round" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(UI): health bar now follows mob movement without round" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -483,30 +489,17 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Src/Common/EnemyManager.cs</url>
-          <line>29</line>
-          <properties documentPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" containingFunctionPresentation="Method 'AttemptSpawn'">
+          <url>file://$PROJECT_DIR$/Src/Common/Hurtbox.cs</url>
+          <line>17</line>
+          <properties documentPath="$PROJECT_DIR$/Src/Common/Hurtbox.cs" containingFunctionPresentation="Method 'ReceiveHit'">
             <startOffsets>
-              <option value="882" />
+              <option value="337" />
             </startOffsets>
             <endOffsets>
-              <option value="918" />
+              <option value="380" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Src/Common/EnemyManager.cs</url>
-          <line>84</line>
-          <properties documentPath="$PROJECT_DIR$/Src/Common/EnemyManager.cs" containingFunctionPresentation="Method 'IsPositionVisible'">
-            <startOffsets>
-              <option value="2748" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2787" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

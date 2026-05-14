@@ -6,6 +6,7 @@ namespace ApexOverride.Charas.Bear;
 
 public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
 {
+    // state
     public enum BearState
     {
         Idle,
@@ -15,22 +16,22 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
         Dead
     }
 
-    // animation
+    // animation tree
     private AnimationNodeStateMachinePlayback _animationStateMachine;
     private AnimationTree _animationTree;
 
-    // hitbox
-    private Area3D _attackArea;
-    private CollisionShape3D _attackShape;
+    // combat boxes
+    private Hitbox _attackHitbox;
+    private Hurtbox _hurtbox;
 
     // stats
     private EntityStats _stats;
+
+    public BearState State { get; set; }
     protected override float Speed => 4.0f;
     protected override float RotateSpeed => 10.0f;
 
-    public BearState State { get; set; }
-
-    // attack methods
+    // --- chara attack ---
     public void Attack()
     {
         if (State is BearState.Attacking or BearState.Hurting)
@@ -44,10 +45,8 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
 
     public void OnAttackHit()
     {
-        _attackShape.Disabled = false;
+        _attackHitbox.Enable(10);
     }
-
-    public EntityStats GetEntityStats() => _stats;
 
     public void InitializeStats()
     {
@@ -57,28 +56,26 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
         AddChild(_stats);
     }
 
-    public BearState GetAnimationState() => State;
+    public EntityStats GetEntityStats() => _stats;
 
+    // --- chara initialization ---
     protected override void Initialize()
     {
         // animation
         _animationTree = GetNode<AnimationTree>("./AnimationTree");
         _animationStateMachine = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
         _animationTree.Active = true;
-        // hitbox
-        _attackArea = GetNode<Area3D>("AttackArea");
-        _attackArea.BodyEntered += OnAttackAreaEntered;
-        _attackShape = _attackArea.GetNode<CollisionShape3D>("CollisionShape3D");
-        _attackShape.Disabled = true;
-
+        // combat boxes
+        _attackHitbox = GetNode<Hitbox>("Hitbox");
+        _hurtbox = GetNode<Hurtbox>("Hurtbox");
+        _hurtbox.AddChild(GetNode<CollisionShape3D>("CollisionShape3D").Duplicate());
+        _hurtbox.HitReceived += TakeDamage;
+        // init stats
         InitializeStats();
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        _AnimationUpdate();
-    }
+    // --- chara animation control ---
+    public BearState GetAnimationState() => State;
 
     private void _AnimationUpdate()
     {
@@ -88,6 +85,13 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
         }
 
         State = Velocity.Length() > 0.05f ? BearState.Walking : BearState.Idle;
+    }
+
+    // --- chara physics ---
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        _AnimationUpdate();
     }
 
     public override void Move(Vector2 targetDirection, double delta)
@@ -104,44 +108,18 @@ public partial class Bear : MobBase, IStatsBearer, IMeleeAttacker
     public void OnAttackFinished()
     {
         State = BearState.Idle;
-        _attackShape.Disabled = true;
+        _attackHitbox.Disable();
     }
 
-    private void OnAttackAreaEntered(Node3D body)
-    {
-        if (body == this)
-        {
-            return;
-        }
-
-        IDamageable target = body as IDamageable;
-
-        if (target == null && body.GetParent() is IDamageable parentDamageable)
-        {
-            target = parentDamageable;
-        }
-
-        target?.TakeDamage(10);
-
-        // Optional: Disable hitbox immediately to prevent multi-hits
-        // _attackShape.SetDeferred(CollisionShape3D.PropertyName.Disabled, true);
-    }
-
-    // hurt methods
+    // --- chara hurt ---
     public override void TakeDamage(int amount)
     {
-        if (State is BearState.Hurting or BearState.Dead)
-        {
-            return;
-        }
+        if (State is BearState.Hurting or BearState.Dead) return;
 
         base.TakeDamage(amount); // This emits the Damaged signal
         _stats.TakeDamage(amount);
 
-        if (State is BearState.Attacking)
-        {
-            return;
-        }
+        if (State is BearState.Attacking) return;
 
         State = BearState.Hurting;
         _animationStateMachine.Travel("flash");
