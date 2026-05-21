@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351281a4-84f6-49e3-b641-09a70f630eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/Common/Hitbox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Common/Hurtbox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Common/HostilityService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Apex Override/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Charas/Bear/Bear.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +88,7 @@
     <setting file="file://$PROJECT_DIR$/Cube9.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Common/AIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Common/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Src/Common/HostilityService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Src/Interfaces/IStatsBearer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UI/ElementAnchor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UI/Screen.cs" root0="FORCE_HIGHLIGHTING" />
@@ -104,6 +102,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/716d154fef5cbe863cd637bd32beda6e3cec5f12e8fed2dc5b2d8149a0d558ab/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/79cddf164aba463817e3441e4bf983ba27e2218592b9add3ee2db6914c43b/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/10.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///var/folders/9x/7067tfcn10j_55h1prym145w0000gn/T/SourceGeneratedDocuments/48E1E4DF86E6D9F316FC36DE/Godot.SourceGenerators/Godot.SourceGenerators.ScriptSignalsGenerator/ApexOverride.Autoloads.CombatEvents_ScriptSignals.generated.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -255,7 +254,7 @@
       <workItem from="1778585478281" duration="3978000" />
       <workItem from="1778643288157" duration="1319000" />
       <workItem from="1778644655376" duration="20069000" />
-      <workItem from="1778746131412" duration="6707000" />
+      <workItem from="1778746131412" duration="18547000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): migrate to rider cs style">
       <option name="closed" value="true" />
@@ -401,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778672920494</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat(chara): add CharacterBody hit and hurt boxes">
+      <option name="closed" value="true" />
+      <created>1778755023983</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1778755023983</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,7 +475,8 @@
     <MESSAGE value="feat(visual): reconstruct pixel perfect free cam (2)" />
     <MESSAGE value="fix(camera): adjust pixel correction offset calculation" />
     <MESSAGE value="fix(UI): health bar now follows mob movement without round" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(UI): health bar now follows mob movement without round" />
+    <MESSAGE value="feat(chara): add CharacterBody hit and hurt boxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(chara): add CharacterBody hit and hurt boxes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
